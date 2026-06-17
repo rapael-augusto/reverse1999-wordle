@@ -60,7 +60,7 @@ The API url base is `http://127.0.0.1:8000/`. All endpoints are listed below.
 		"name": "La Source",
 		"slug": "la-source"
 	},
-    ...
+    // more characters...
 ]
 ```
 
