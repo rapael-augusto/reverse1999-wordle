@@ -1,0 +1,1282 @@
+[
+  {
+    "id": 1,
+    "name": "Ms. Radio",
+    "rarity": 2,
+    "afflatus": "Spirit",
+    "dmg_type": "Mental",
+    "race": "Awakened",
+    "version": 1.0,
+    "slug": "ms-radio"
+  },
+  {
+    "id": 2,
+    "name": "Door",
+    "rarity": 2,
+    "afflatus": "Intellect",
+    "dmg_type": "Reality",
+    "race": "Arcanist",
+    "version": 1.0,
+    "slug": "door"
+  },
+  {
+    "id": 3,
+    "name": "The Fool",
+    "rarity": 3,
+    "afflatus": "Star",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 1.0,
+    "slug": "the-fool"
+  },
+  {
+    "id": 4,
+    "name": "La Source",
+    "rarity": 3,
+    "afflatus": "Plant",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 1.0,
+    "slug": "la-source"
+  },
+  {
+    "id": 5,
+    "name": "aliEn T",
+    "rarity": 3,
+    "afflatus": "Star",
+    "dmg_type": "Reality",
+    "race": "Beyond",
+    "version": 1.0,
+    "slug": "alien-t"
+  },
+  {
+    "id": 6,
+    "name": "Leilani",
+    "rarity": 3,
+    "afflatus": "Beast",
+    "dmg_type": "Reality",
+    "race": "Arcanist",
+    "version": 1.0,
+    "slug": "leilani"
+  },
+  {
+    "id": 7,
+    "name": "John Titor",
+    "rarity": 3,
+    "afflatus": "Intellect",
+    "dmg_type": "Reality",
+    "race": "Arcanist",
+    "version": 1.0,
+    "slug": "john-titor"
+  },
+  {
+    "id": 8,
+    "name": "Twins Sleep",
+    "rarity": 3,
+    "afflatus": "Spirit",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 1.0,
+    "slug": "twins-sleep"
+  },
+  {
+    "id": 9,
+    "name": "Bette",
+    "rarity": 3,
+    "afflatus": "Mineral",
+    "dmg_type": "Reality",
+    "race": "Arcanist",
+    "version": 1.0,
+    "slug": "bette"
+  },
+  {
+    "id": 10,
+    "name": "Darley Clatter",
+    "rarity": 3,
+    "afflatus": "Beast",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 1.0,
+    "slug": "darley-clatter"
+  },
+  {
+    "id": 11,
+    "name": "ONiON",
+    "rarity": 3,
+    "afflatus": "Mineral",
+    "dmg_type": "Reality",
+    "race": "Arcanist",
+    "version": 1.0,
+    "slug": "onion"
+  },
+  {
+    "id": 12,
+    "name": "Sputnik",
+    "rarity": 3,
+    "afflatus": "Star",
+    "dmg_type": "Mental",
+    "race": "Awakened",
+    "version": 1.0,
+    "slug": "sputnik"
+  },
+  {
+    "id": 13,
+    "name": "Nick Bottom",
+    "rarity": 4,
+    "afflatus": "Beast",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 1.0,
+    "slug": "nick-bottom"
+  },
+  {
+    "id": 14,
+    "name": "Eagle",
+    "rarity": 4,
+    "afflatus": "Plant",
+    "dmg_type": "Reality",
+    "race": "Arcanist",
+    "version": 1.0,
+    "slug": "eagle"
+  },
+  {
+    "id": 15,
+    "name": "Zima",
+    "rarity": 4,
+    "afflatus": "Plant",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 1.0,
+    "slug": "zima"
+  },
+  {
+    "id": 16,
+    "name": "Bunny Bunny",
+    "rarity": 4,
+    "afflatus": "Beast",
+    "dmg_type": "Reality",
+    "race": "Arcanist",
+    "version": 1.0,
+    "slug": "bunny-bunny"
+  },
+  {
+    "id": 17,
+    "name": "Pavia",
+    "rarity": 4,
+    "afflatus": "Beast",
+    "dmg_type": "Mental",
+    "race": "Mixed",
+    "version": 1.0,
+    "slug": "pavia"
+  },
+  {
+    "id": 18,
+    "name": "Oliver Fog",
+    "rarity": 4,
+    "afflatus": "Star",
+    "dmg_type": "Reality",
+    "race": "Arcanist",
+    "version": 1.0,
+    "slug": "oliver-fog"
+  },
+  {
+    "id": 19,
+    "name": "Mondlicht",
+    "rarity": 4,
+    "afflatus": "Mineral",
+    "dmg_type": "Reality",
+    "race": "Arcanist",
+    "version": 1.0,
+    "slug": "mondlicht"
+  },
+  {
+    "id": 20,
+    "name": "APPLe",
+    "rarity": 4,
+    "afflatus": "Star",
+    "dmg_type": "Mental",
+    "race": "Awakened",
+    "version": 1.0,
+    "slug": "apple"
+  },
+  {
+    "id": 21,
+    "name": "Cristallo",
+    "rarity": 4,
+    "afflatus": "Mineral",
+    "dmg_type": "Reality",
+    "race": "Arcanist",
+    "version": 1.0,
+    "slug": "cristallo"
+  },
+  {
+    "id": 22,
+    "name": "TTT",
+    "rarity": 4,
+    "afflatus": "Star",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 1.0,
+    "slug": "ttt"
+  },
+  {
+    "id": 23,
+    "name": "Rabies",
+    "rarity": 4,
+    "afflatus": "Plant",
+    "dmg_type": "Reality",
+    "race": "Arcanist",
+    "version": 1.0,
+    "slug": "rabies"
+  },
+  {
+    "id": 24,
+    "name": "Ms. Moissan",
+    "rarity": 4,
+    "afflatus": "Mineral",
+    "dmg_type": "Reality",
+    "race": "Arcanist",
+    "version": 1.0,
+    "slug": "ms-moissan"
+  },
+  {
+    "id": 25,
+    "name": "Poltergeist",
+    "rarity": 4,
+    "afflatus": "Spirit",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 1.0,
+    "slug": "poltergeist"
+  },
+  {
+    "id": 26,
+    "name": "Mesmer Jr.",
+    "rarity": 4,
+    "afflatus": "Intellect",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 1.0,
+    "slug": "mesmer-jr"
+  },
+  {
+    "id": 27,
+    "name": "Erick",
+    "rarity": 4,
+    "afflatus": "Star",
+    "dmg_type": "Reality",
+    "race": "Arcanist",
+    "version": 1.0,
+    "slug": "erick"
+  },
+  {
+    "id": 28,
+    "name": "X",
+    "rarity": 5,
+    "afflatus": "Intellect",
+    "dmg_type": "Reality",
+    "race": "Arcanist",
+    "version": 1.0,
+    "slug": "x"
+  },
+  {
+    "id": 29,
+    "name": "Sweetheart",
+    "rarity": 5,
+    "afflatus": "Beast",
+    "dmg_type": "Reality",
+    "race": "Arcanist",
+    "version": 1.0,
+    "slug": "sweetheart"
+  },
+  {
+    "id": 30,
+    "name": "Baby Blue",
+    "rarity": 5,
+    "afflatus": "Star",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 1.0,
+    "slug": "baby-blue"
+  },
+  {
+    "id": 31,
+    "name": "Charlie",
+    "rarity": 5,
+    "afflatus": "Star",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 1.0,
+    "slug": "charlie"
+  },
+  {
+    "id": 32,
+    "name": "Bkornblume",
+    "rarity": 5,
+    "afflatus": "Plant",
+    "dmg_type": "Reality",
+    "race": "Arcanist",
+    "version": 1.0,
+    "slug": "bkornblume"
+  },
+  {
+    "id": 33,
+    "name": "Dikke",
+    "rarity": 5,
+    "afflatus": "Beast",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 1.0,
+    "slug": "dikke"
+  },
+  {
+    "id": 34,
+    "name": "Sonetto",
+    "rarity": 5,
+    "afflatus": "Mineral",
+    "dmg_type": "Reality",
+    "race": "Arcanist",
+    "version": 1.0,
+    "slug": "sonetto"
+  },
+  {
+    "id": 35,
+    "name": "Balloon Party",
+    "rarity": 5,
+    "afflatus": "Mineral",
+    "dmg_type": "Reality",
+    "race": "Arcanist",
+    "version": 1.0,
+    "slug": "balloon-party"
+  },
+  {
+    "id": 36,
+    "name": "Necrologist",
+    "rarity": 5,
+    "afflatus": "Mineral",
+    "dmg_type": "Reality",
+    "race": "Arcanist",
+    "version": 1.0,
+    "slug": "necrologist"
+  },
+  {
+    "id": 37,
+    "name": "Satsuki",
+    "rarity": 5,
+    "afflatus": "Plant",
+    "dmg_type": "Mental",
+    "race": "Mixed",
+    "version": 1.0,
+    "slug": "satsuki"
+  },
+  {
+    "id": 38,
+    "name": "Matilda",
+    "rarity": 5,
+    "afflatus": "Star",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 1.0,
+    "slug": "matilda"
+  },
+  {
+    "id": 39,
+    "name": "Tennant",
+    "rarity": 5,
+    "afflatus": "Beast",
+    "dmg_type": "Reality",
+    "race": "Arcanist",
+    "version": 1.0,
+    "slug": "tennant"
+  },
+  {
+    "id": 40,
+    "name": "Click",
+    "rarity": 5,
+    "afflatus": "Spirit",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 1.0,
+    "slug": "click"
+  },
+  {
+    "id": 41,
+    "name": "Druvis III",
+    "rarity": 6,
+    "afflatus": "Plant",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 1.0,
+    "slug": "druvis-iii"
+  },
+  {
+    "id": 42,
+    "name": "Lilya",
+    "rarity": 6,
+    "afflatus": "Star",
+    "dmg_type": "Reality",
+    "race": "Arcanist",
+    "version": 1.0,
+    "slug": "lilya"
+  },
+  {
+    "id": 43,
+    "name": "A Knight",
+    "rarity": 6,
+    "afflatus": "Spirit",
+    "dmg_type": "Reality",
+    "race": "Arcanist",
+    "version": 1.0,
+    "slug": "a-knight"
+  },
+  {
+    "id": 44,
+    "name": "Sotheby",
+    "rarity": 6,
+    "afflatus": "Plant",
+    "dmg_type": "Reality",
+    "race": "Arcanist",
+    "version": 1.0,
+    "slug": "sotheby"
+  },
+  {
+    "id": 45,
+    "name": "Regulus",
+    "rarity": 6,
+    "afflatus": "Star",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 1.0,
+    "slug": "regulus"
+  },
+  {
+    "id": 46,
+    "name": "Centurion",
+    "rarity": 6,
+    "afflatus": "Beast",
+    "dmg_type": "Reality",
+    "race": "Arcanist",
+    "version": 1.0,
+    "slug": "centurion"
+  },
+  {
+    "id": 47,
+    "name": "An-an Lee",
+    "rarity": 6,
+    "afflatus": "Plant",
+    "dmg_type": "Reality",
+    "race": "Arcanist",
+    "version": 1.0,
+    "slug": "an-an-lee"
+  },
+  {
+    "id": 48,
+    "name": "Medicine Pocket",
+    "rarity": 6,
+    "afflatus": "Beast",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 1.0,
+    "slug": "medicine-pocket"
+  },
+  {
+    "id": 49,
+    "name": "Voyager",
+    "rarity": 6,
+    "afflatus": "Star",
+    "dmg_type": "Mental",
+    "race": "Beyond",
+    "version": 1.0,
+    "slug": "voyager"
+  },
+  {
+    "id": 50,
+    "name": "Eternity",
+    "rarity": 6,
+    "afflatus": "Mineral",
+    "dmg_type": "Reality",
+    "race": "Arcanist",
+    "version": 1.0,
+    "slug": "eternity"
+  },
+  {
+    "id": 51,
+    "name": "Ms. NewBabel",
+    "rarity": 6,
+    "afflatus": "Mineral",
+    "dmg_type": "Reality",
+    "race": "Arcanist",
+    "version": 1.0,
+    "slug": "ms-newbabel"
+  },
+  {
+    "id": 52,
+    "name": "Diggers",
+    "rarity": 5,
+    "afflatus": "Plant",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 1.1,
+    "slug": "diggers"
+  },
+  {
+    "id": 53,
+    "name": "Melania",
+    "rarity": 6,
+    "afflatus": "Beast",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 1.1,
+    "slug": "melania"
+  },
+  {
+    "id": 54,
+    "name": "Pickles",
+    "rarity": 6,
+    "afflatus": "Mineral",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 1.1,
+    "slug": "pickles"
+  },
+  {
+    "id": 55,
+    "name": "Blonney",
+    "rarity": 5,
+    "afflatus": "Star",
+    "dmg_type": "Reality",
+    "race": "Arcanist",
+    "version": 1.2,
+    "slug": "blonney"
+  },
+  {
+    "id": 56,
+    "name": "Horropedia",
+    "rarity": 5,
+    "afflatus": "Mineral",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 1.2,
+    "slug": "horropedia"
+  },
+  {
+    "id": 57,
+    "name": "Jessica",
+    "rarity": 6,
+    "afflatus": "Plant",
+    "dmg_type": "Reality",
+    "race": "Beyond",
+    "version": 1.2,
+    "slug": "jessica"
+  },
+  {
+    "id": 58,
+    "name": "Tooth Fairy",
+    "rarity": 6,
+    "afflatus": "Star",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 1.2,
+    "slug": "tooth-fairy"
+  },
+  {
+    "id": 61,
+    "name": "Kanjira",
+    "rarity": 5,
+    "afflatus": "Plant",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 1.3,
+    "slug": "kanjira"
+  },
+  {
+    "id": 62,
+    "name": "Kaalaa Baunaa",
+    "rarity": 6,
+    "afflatus": "Mineral",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 1.3,
+    "slug": "kaalaa-baunaa"
+  },
+  {
+    "id": 63,
+    "name": "Shamane",
+    "rarity": 6,
+    "afflatus": "Beast",
+    "dmg_type": "Reality",
+    "race": "Arcanist",
+    "version": 1.3,
+    "slug": "shamane"
+  },
+  {
+    "id": 68,
+    "name": "6",
+    "rarity": 6,
+    "afflatus": "Intellect",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 1.4,
+    "slug": "6"
+  },
+  {
+    "id": 69,
+    "name": "37",
+    "rarity": 6,
+    "afflatus": "Star",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 1.4,
+    "slug": "37"
+  },
+  {
+    "id": 71,
+    "name": "Desert Flannel",
+    "rarity": 5,
+    "afflatus": "Beast",
+    "dmg_type": "Reality",
+    "race": "Arcanist",
+    "version": 1.5,
+    "slug": "desert-flannel"
+  },
+  {
+    "id": 72,
+    "name": "Ulu",
+    "rarity": 5,
+    "afflatus": "Mineral",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 1.5,
+    "slug": "ulu"
+  },
+  {
+    "id": 73,
+    "name": "Ezra Theodore",
+    "rarity": 6,
+    "afflatus": "Star",
+    "dmg_type": "Mental",
+    "race": "Human",
+    "version": 1.5,
+    "slug": "ezra-theodore"
+  },
+  {
+    "id": 74,
+    "name": "Spathodea",
+    "rarity": 6,
+    "afflatus": "Beast",
+    "dmg_type": "Reality",
+    "race": "Arcanist",
+    "version": 1.5,
+    "slug": "spathodea"
+  },
+  {
+    "id": 75,
+    "name": "Yenisei",
+    "rarity": 5,
+    "afflatus": "Star",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 1.6,
+    "slug": "yenisei"
+  },
+  {
+    "id": 76,
+    "name": "Getian",
+    "rarity": 6,
+    "afflatus": "Beast",
+    "dmg_type": "Reality",
+    "race": "Arcanist",
+    "version": 1.6,
+    "slug": "getian"
+  },
+  {
+    "id": 77,
+    "name": "Jiu Niangzi",
+    "rarity": 6,
+    "afflatus": "Mineral",
+    "dmg_type": "Reality",
+    "race": "Mixed",
+    "version": 1.6,
+    "slug": "jiu-niangzi"
+  },
+  {
+    "id": 78,
+    "name": "Isolde",
+    "rarity": 6,
+    "afflatus": "Spirit",
+    "dmg_type": "Reality",
+    "race": "Arcanist",
+    "version": 1.7,
+    "slug": "isolde"
+  },
+  {
+    "id": 79,
+    "name": "Marcus",
+    "rarity": 6,
+    "afflatus": "Plant",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 1.7,
+    "slug": "marcus"
+  },
+  {
+    "id": 80,
+    "name": "Avgust",
+    "rarity": 5,
+    "afflatus": "Plant",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 1.8,
+    "slug": "avgust"
+  },
+  {
+    "id": 81,
+    "name": "Vila",
+    "rarity": 6,
+    "afflatus": "Plant",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 1.8,
+    "slug": "vila"
+  },
+  {
+    "id": 82,
+    "name": "Windsong",
+    "rarity": 6,
+    "afflatus": "Star",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 1.8,
+    "slug": "windsong"
+  },
+  {
+    "id": 83,
+    "name": "Lorelei",
+    "rarity": 5,
+    "afflatus": "Star",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 1.9,
+    "slug": "lorelei"
+  },
+  {
+    "id": 84,
+    "name": "Kakania",
+    "rarity": 6,
+    "afflatus": "Plant",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 1.9,
+    "slug": "kakania"
+  },
+  {
+    "id": 85,
+    "name": "Lucy",
+    "rarity": 6,
+    "afflatus": "Intellect",
+    "dmg_type": "Reality",
+    "race": "Awakened",
+    "version": 1.9,
+    "slug": "lucy"
+  },
+  {
+    "id": 86,
+    "name": "Semmelweis",
+    "rarity": 6,
+    "afflatus": "Mineral",
+    "dmg_type": "Reality",
+    "race": "Infected",
+    "version": 1.9,
+    "slug": "semmelweis"
+  },
+  {
+    "id": 87,
+    "name": "Pioneer",
+    "rarity": 3,
+    "afflatus": "Spirit",
+    "dmg_type": "Mental",
+    "race": "Awakened",
+    "version": 2.0,
+    "slug": "pioneer"
+  },
+  {
+    "id": 88,
+    "name": "J",
+    "rarity": 6,
+    "afflatus": "Beast",
+    "dmg_type": "Reality",
+    "race": "Mixed",
+    "version": 2.0,
+    "slug": "j"
+  },
+  {
+    "id": 89,
+    "name": "Mercuria",
+    "rarity": 6,
+    "afflatus": "Spirit",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 2.0,
+    "slug": "mercuria"
+  },
+  {
+    "id": 90,
+    "name": "Barbara",
+    "rarity": 5,
+    "afflatus": "Spirit",
+    "dmg_type": "Mental",
+    "race": "Mixed",
+    "version": 2.1,
+    "slug": "barbara"
+  },
+  {
+    "id": 91,
+    "name": "Argus",
+    "rarity": 6,
+    "afflatus": "Plant",
+    "dmg_type": "Reality",
+    "race": "Arcanist",
+    "version": 2.1,
+    "slug": "argus"
+  },
+  {
+    "id": 92,
+    "name": "Tuesday",
+    "rarity": 6,
+    "afflatus": "Spirit",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 2.1,
+    "slug": "tuesday"
+  },
+  {
+    "id": 93,
+    "name": "White Rum",
+    "rarity": 4,
+    "afflatus": "Intellect",
+    "dmg_type": "Reality",
+    "race": "Awakened",
+    "version": 2.2,
+    "slug": "white-rum"
+  },
+  {
+    "id": 94,
+    "name": "Mr. Duncan",
+    "rarity": 5,
+    "afflatus": "Beast",
+    "dmg_type": "Reality",
+    "race": "Human",
+    "version": 2.2,
+    "slug": "mr-duncan"
+  },
+  {
+    "id": 95,
+    "name": "Anjo Nala",
+    "rarity": 6,
+    "afflatus": "Beast",
+    "dmg_type": "Mental",
+    "race": "Beyond",
+    "version": 2.2,
+    "slug": "anjo-nala"
+  },
+  {
+    "id": 96,
+    "name": "Lopera",
+    "rarity": 6,
+    "afflatus": "Beast",
+    "dmg_type": "Reality",
+    "race": "Arcanist",
+    "version": 2.2,
+    "slug": "lopera"
+  },
+  {
+    "id": 97,
+    "name": "Brimley",
+    "rarity": 5,
+    "afflatus": "Mineral",
+    "dmg_type": "Mental",
+    "race": "Awakened",
+    "version": 2.3,
+    "slug": "brimley"
+  },
+  {
+    "id": 98,
+    "name": "Flutterpage",
+    "rarity": 6,
+    "afflatus": "Star",
+    "dmg_type": "Reality",
+    "race": "Mixed",
+    "version": 2.3,
+    "slug": "flutterpage"
+  },
+  {
+    "id": 99,
+    "name": "Willow",
+    "rarity": 6,
+    "afflatus": "Plant",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 2.3,
+    "slug": "willow"
+  },
+  {
+    "id": 100,
+    "name": "Barcarola",
+    "rarity": 6,
+    "afflatus": "Star",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 2.4,
+    "slug": "barcarola"
+  },
+  {
+    "id": 101,
+    "name": "Fatutu",
+    "rarity": 6,
+    "afflatus": "Mineral",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 2.4,
+    "slug": "fatutu"
+  },
+  {
+    "id": 102,
+    "name": "Loggerhead",
+    "rarity": 5,
+    "afflatus": "Plant",
+    "dmg_type": "Mental",
+    "race": "Awakened",
+    "version": 2.5,
+    "slug": "loggerhead"
+  },
+  {
+    "id": 103,
+    "name": "Liang Yue",
+    "rarity": 6,
+    "afflatus": "Star",
+    "dmg_type": "Reality",
+    "race": "Mixed",
+    "version": 2.5,
+    "slug": "liang-yue"
+  },
+  {
+    "id": 104,
+    "name": "Noire",
+    "rarity": 6,
+    "afflatus": "Plant",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 2.5,
+    "slug": "noire"
+  },
+  {
+    "id": 105,
+    "name": "Aleph",
+    "rarity": 6,
+    "afflatus": "Intellect",
+    "dmg_type": "Mental",
+    "race": "Human",
+    "version": 2.6,
+    "slug": "aleph"
+  },
+  {
+    "id": 106,
+    "name": "Recoleta",
+    "rarity": 6,
+    "afflatus": "Mineral",
+    "dmg_type": "Reality",
+    "race": "Arcanist",
+    "version": 2.6,
+    "slug": "recoleta"
+  },
+  {
+    "id": 107,
+    "name": "Name Day",
+    "rarity": 5,
+    "afflatus": "Mineral",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 2.7,
+    "slug": "name-day"
+  },
+  {
+    "id": 108,
+    "name": "Hissabeth",
+    "rarity": 6,
+    "afflatus": "Plant",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 2.7,
+    "slug": "hissabeth"
+  },
+  {
+    "id": 109,
+    "name": "Kiperina",
+    "rarity": 6,
+    "afflatus": "Star",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 2.7,
+    "slug": "kiperina"
+  },
+  {
+    "id": 110,
+    "name": "Buddy Fairchild",
+    "rarity": 5,
+    "afflatus": "Plant",
+    "dmg_type": "Reality",
+    "race": "Arcanist",
+    "version": 2.8,
+    "slug": "buddy-fairchild"
+  },
+  {
+    "id": 111,
+    "name": "Ulrich",
+    "rarity": 6,
+    "afflatus": "Intellect",
+    "dmg_type": "Reality",
+    "race": "Awakened",
+    "version": 2.8,
+    "slug": "ulrich"
+  },
+  {
+    "id": 112,
+    "name": "Moldir",
+    "rarity": 6,
+    "afflatus": "Beast",
+    "dmg_type": "Reality",
+    "race": "Mixed",
+    "version": 2.8,
+    "slug": "moldir"
+  },
+  {
+    "id": 113,
+    "name": "Nautika",
+    "rarity": 6,
+    "afflatus": "Spirit",
+    "dmg_type": "Reality",
+    "race": "Infected",
+    "version": 2.8,
+    "slug": "nautika"
+  },
+  {
+    "id": 114,
+    "name": "Charon",
+    "rarity": 6,
+    "afflatus": "Spirit",
+    "dmg_type": "Mental",
+    "race": "Awakened",
+    "version": 3.0,
+    "slug": "charon"
+  },
+  {
+    "id": 115,
+    "name": "Sentinel",
+    "rarity": 6,
+    "afflatus": "Mineral",
+    "dmg_type": "Reality",
+    "race": "Arcanist",
+    "version": 3.0,
+    "slug": "sentinel"
+  },
+  {
+    "id": 116,
+    "name": "Alexios",
+    "rarity": 5,
+    "afflatus": "Beast",
+    "dmg_type": "Reality",
+    "race": "Human",
+    "version": 2.75,
+    "slug": "alexios"
+  },
+  {
+    "id": 117,
+    "name": "Ezio Auditore",
+    "rarity": 6,
+    "afflatus": "Star",
+    "dmg_type": "Reality",
+    "race": "Human",
+    "version": 2.75,
+    "slug": "ezio-auditore"
+  },
+  {
+    "id": 118,
+    "name": "Kassandra",
+    "rarity": 6,
+    "afflatus": "Mineral",
+    "dmg_type": "Reality",
+    "race": "Human",
+    "version": 2.75,
+    "slug": "kassandra"
+  },
+  {
+    "id": 119,
+    "name": "Corvus",
+    "rarity": 6,
+    "afflatus": "Intellect",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 3.1,
+    "slug": "corvus"
+  },
+  {
+    "id": 120,
+    "name": "Rubuska",
+    "rarity": 6,
+    "afflatus": "Mineral",
+    "dmg_type": "Reality",
+    "race": "Arcanist",
+    "version": 3.1,
+    "slug": "rubuska"
+  },
+  {
+    "id": 121,
+    "name": "Beryl",
+    "rarity": 6,
+    "afflatus": "Intellect",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 3.2,
+    "slug": "beryl"
+  },
+  {
+    "id": 122,
+    "name": "Brume",
+    "rarity": 6,
+    "afflatus": "Beast",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 3.2,
+    "slug": "brume"
+  },
+  {
+    "id": 123,
+    "name": "Igor",
+    "rarity": 6,
+    "afflatus": "Beast",
+    "dmg_type": "Reality",
+    "race": "Mixed",
+    "version": 3.3,
+    "slug": "igor"
+  },
+  {
+    "id": 124,
+    "name": "Marsha",
+    "rarity": 6,
+    "afflatus": "Beast",
+    "dmg_type": "Reality",
+    "race": "Arcanist",
+    "version": 3.3,
+    "slug": "marsha"
+  },
+  {
+    "id": 125,
+    "name": "Reed",
+    "rarity": 4,
+    "afflatus": "Plant",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 3.4,
+    "slug": "reed"
+  },
+  {
+    "id": 126,
+    "name": "Cheng Heguang",
+    "rarity": 6,
+    "afflatus": "Star",
+    "dmg_type": "Reality",
+    "race": "Arcanist",
+    "version": 3.4,
+    "slug": "cheng-heguang"
+  },
+  {
+    "id": 127,
+    "name": "Paper Heron",
+    "rarity": 6,
+    "afflatus": "Plant",
+    "dmg_type": "Reality",
+    "race": "Arcanist",
+    "version": 3.4,
+    "slug": "paper-heron"
+  },
+  {
+    "id": 128,
+    "name": "Lorentz Butterfly",
+    "rarity": 6,
+    "afflatus": "Intellect",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 3.5,
+    "slug": "lorentz-butterfly"
+  },
+  {
+    "id": 129,
+    "name": "Ramona",
+    "rarity": 6,
+    "afflatus": "Plant",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 3.5,
+    "slug": "ramona"
+  },
+  {
+    "id": 130,
+    "name": "Enigma",
+    "rarity": 6,
+    "afflatus": "Intellect",
+    "dmg_type": "Reality",
+    "race": "Human",
+    "version": 3.6,
+    "slug": "enigma"
+  },
+  {
+    "id": 131,
+    "name": "Lady by the Lake",
+    "rarity": 4,
+    "afflatus": "Plant",
+    "dmg_type": "Mental",
+    "race": "Awakened",
+    "version": 3.7,
+    "slug": "lady-by-the-lake"
+  },
+  {
+    "id": 132,
+    "name": "Silverwing Eagle",
+    "rarity": 5,
+    "afflatus": "Plant",
+    "dmg_type": "Reality",
+    "race": "Arcanist",
+    "version": 3.7,
+    "slug": "silverwing-eagle"
+  },
+  {
+    "id": 133,
+    "name": "Coppélia",
+    "rarity": 6,
+    "afflatus": "Mineral",
+    "dmg_type": "Reality",
+    "race": "Arcanist",
+    "version": 3.7,
+    "slug": "coppelia"
+  },
+  {
+    "id": 134,
+    "name": "Rhiannon",
+    "rarity": 6,
+    "afflatus": "Beast",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 3.7,
+    "slug": "rhiannon"
+  },
+  {
+    "id": 135,
+    "name": "Ms. Stranger",
+    "rarity": 6,
+    "afflatus": "Mineral",
+    "dmg_type": "Mental",
+    "race": "Arcanist",
+    "version": 3.7,
+    "slug": "ms-stranger"
+  }
+]
