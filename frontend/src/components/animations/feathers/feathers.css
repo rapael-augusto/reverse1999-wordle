@@ -1,0 +1,17 @@
+.feathers-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100dvw;
+  height: 100dvh;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.feather-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  will-change: transform;
+}
