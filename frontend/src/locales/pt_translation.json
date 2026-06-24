@@ -1,0 +1,63 @@
+{
+  "header": {
+    "howToPlay": "Como Jogar",
+    "statistics": "Estatísticas",
+    "themes": "Temas",
+    "settings": "Configurações",
+    "dropdowns": {
+      "settings": {
+        "animations": "Animações",
+        "on": "Lig.",
+        "off": "Deslig.",
+        "language": "Idioma"
+      },
+      "themes": {
+        "default": "A Maleta",
+        "blue": "Glória Reestabelecida",
+        "white": "Que a Paz Esteja Conosco",
+        "gray": "Olho da Tempestade",
+        "red": "Coração na Direita"
+      }
+    }
+  },
+  "nav": {
+    "daily": "Diário",
+    "unlimited": "Ilimitado",
+    "allCharacters": "Todos os Personagens"
+  },
+  "input": {
+    "placeholder": "Puxe o fio dourado... ex.: Sonetto;"
+  },
+  "guess": {
+    "character": "Personagem",
+    "version": "Versão",
+    "rarity": "Raridade",
+    "afflatus": "Afflatus",
+    "damageType": "Tipo de Dano",
+    "race": "Raça",
+    "correct": "Correto",
+    "partial": "Parcial",
+    "wrong": "Errado"
+  },
+  "footer": {
+    "basedOn": "Baseado em",
+    "by": "criado pela Bluepoch",
+    "inspiredBy": "Inspirado em",
+    "and": "e",
+    "madeBy": "Feito pelo primeiro e único, \"R\"."
+  },
+  "htpModal": {
+    "basics": "O básico:",
+    "line1": "Todos os dias, um novo personagem é selecionado para você adivinhar, por exemplo:",
+    "line2": "Para Versão e Raridade:",
+    "line3": "• ↑ significa que a resposta é maior.",
+    "line4": "• ↓ significa que a resposta é menor.",
+    "line5": "Verde indica uma correspondência correta.",
+    "line6": "Amarelo indica uma correspondência parcial.",
+    "line7": "Cinza indica uma correspondência incorreta.",
+    "notes": "Obs.:",
+    "list1": "Versões de collab são tratadas como \"meias versões\" ao comparar versões de lançamento.",
+    "list2": "A collab AC é considerada a versão 2.75, pois está entre as versões globais 2.7 e 2.8.",
+    "list3": "As respostas diárias podem incluir personagens disponíveis atualmente apenas no servidor CN."
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "header": {
+    "howToPlay": "How to Play",
+    "statistics": "Statistics",
+    "themes": "Themes",
+    "settings": "Settings",
+    "dropdowns": {
+      "settings": {
+        "animations": "Animations",
+        "on": "On",
+        "off": "Off",
+        "language": "Language"
+      },
+      "themes": {
+        "default": "The Shelter",
+        "blue": "Glory Regained",
+        "white": "Peace Be With Us",
+        "gray": "Eye of the Storm",
+        "red": "Heartbeat on the Right"
+      }
+    }
+  },
+  "nav": {
+    "daily": "Daily",
+    "unlimited": "Unlimited",
+    "allCharacters": "All Characters"
+  },
+  "input": {
+    "placeholder": "Pull the golden thread... e.g: Sonetto;"
+  },
+  "guess": {
+    "character": "Character",
+    "version": "Version",
+    "rarity": "Rarity",
+    "afflatus": "Afflatus",
+    "damageType": "Damage Type",
+    "race": "Race",
+    "correct": "Correct",
+    "partial": "Partial",
+    "wrong": "Wrong"
+  },
+  "footer": {
+    "basedOn": "Based on",
+    "by": "by Bluepoch",
+    "inspiredBy": "Inspired by",
+    "and": "and",
+    "madeBy": "Made by yours truly, \"R\"."
+  },
+  "htpModal": {
+    "basics": "The basics:",
+    "line1": "Every day, a new character is selected for you to guess, e.g.:",
+    "line2": "For Version and Rarity:",
+    "line3": "• ↑ means the answer is higher.",
+    "line4": "• ↓ means the answer is lower.",
+    "line5": "Green indicates a correct match.",
+    "line6": "Yellow indicates a partial match.",
+    "line7": "Gray indicates an incorrect match.",
+    "notes": "Notes:",
+    "list1": "Collaboration versions are treated as half versions when comparing release versions.",
+    "list2": "The AC Collaboration is considered version 2.75 because it falls between Global versions 2.7 and 2.8.",
+    "list3": "Daily answers may include characters currently available only on the CN server."
+  }
+}
