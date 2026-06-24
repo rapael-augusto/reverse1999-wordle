@@ -48,7 +48,7 @@ export default function Header({
   };
 
   return (
-    <header className="header-main-wrapper">
+    <header>
       <div className="header-title-wrapper">
         <p className="header-title">
           Reverse: 1999 <span>Wordle</span>
