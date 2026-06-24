@@ -7,3 +7,50 @@ html, body {
   display: flex;
   flex-direction: column;
 }
+
+:root {
+  --primary-color: hsl(18, 72%, 55%);
+  --primary-color-light: hsl(from var(--primary-color) h s calc(l + 10));
+  --secondary-color: #262626;
+  --font-color: white;
+  --incorrect-color: #444;
+}
+
+[data-theme="blue"] {
+  --primary-color: hsl(241.79, 67.68%, 38.82%);
+  --primary-color-light: hsl(from var(--primary-color) h s calc(l + 10));
+  --secondary-color: rgb(10, 10, 10);
+  --font-color: white;
+  --incorrect-color: #444;
+}
+
+[data-theme="white"] {
+  --primary-color: hsl(45.6, 51.02%, 51.96%);
+  --primary-color-light: hsl(from var(--primary-color) h s calc(l + 10));
+  --secondary-color: hsl(40, 29%, 97%);
+  --font-color: black;
+  --incorrect-color: #7f7f7f;
+}
+
+[data-theme="gray"] {
+  --primary-color: hsl(0, 0%, 50.2%);
+  --primary-color-light: hsl(from var(--primary-color) h s calc(l + 10));
+  --secondary-color: #000000;
+  --font-color: white;
+  --incorrect-color: #444;
+}
+
+[data-theme="red"] {
+  --primary-color: hsl(355, 46.55%, 45.49%);
+  --primary-color-light: hsl(from var(--primary-color) h s calc(l + 10));
+  --secondary-color: hsl(0, 0%, 12.94%);
+  --font-color: white;
+  --incorrect-color: #444;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Tektur", sans-serif;
+}
