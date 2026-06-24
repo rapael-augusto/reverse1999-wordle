@@ -1,0 +1,40 @@
+.mode-navigation-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  margin: 1rem 0;
+}
+
+.mode-navigation-wrapper a {
+  position: relative;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 0.3rem;
+  color: var(--font-color);
+  padding: 0.3rem 0.75rem;
+  font-size: 0.7rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease;
+  text-decoration: none;
+}
+
+.mode-navigation-wrapper a:hover {
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+.mode-navigation-wrapper a.active {
+  border-color: var(--primary-color);
+  background: var(--primary-color);
+}
+
+.mode-navigation-wrapper a.unactive {
+  background: color-mix(in srgb, var(--font-color) 4%, transparent);
+  border-color: color-mix(in srgb, var(--font-color) 15%, transparent);
+}
