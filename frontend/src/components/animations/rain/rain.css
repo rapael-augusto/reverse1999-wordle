@@ -1,0 +1,38 @@
+.rain-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100dvw;
+  height: 100dvh;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.raindrop {
+  position: absolute;
+  top: 100%;
+  width: 1px;
+  filter: blur(0.5px);
+  animation: rise linear infinite;
+}
+
+@keyframes rise {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-120dvh);
+    opacity: 0;
+  }
+}
