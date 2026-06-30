@@ -1,71 +1,73 @@
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
-import type { Afflatus } from "../../types/afflatus";
-import type { Dmg } from "../../types/dmg";
-import type { GuessResult } from "../../types/guessResult";
-import type { Race } from "../../types/race";
-import type { Rarity } from "../../types/rarity";
-import "./guess-box.css"
+import type { GuessResult, NumericComparison } from "../../types/guessResult";
+import "./guess-box.css";
 
 interface GuessBoxProps {
-  slug?: string;
-  name?: string;
-  version?: number;
-  rarity?: Rarity;
-  afflatus?: Afflatus;
-  dmgType?: Dmg;
-  race?: Race;
-  guessResult?: GuessResult;
+  slug: string;
+  guessResult: GuessResult;
+  lastAnimation: boolean;
 }
 
 export default function GuessBox({
-  slug = "",
-  name = "",
-  version = 1,
-  rarity = 2,
-  afflatus = "Star",
-  dmgType = "Mental",
-  race = "Arcanist",
-  guessResult = [true, true, false, false, false],
+  slug,
+  guessResult,
+  lastAnimation,
 }: GuessBoxProps) {
-  const renderArrow = (value: "higher" | "lower" | true) => {
-    if (value === "higher") return <FaArrowUp />;
-    if (value === "lower") return <FaArrowDown />;
+  const allCorrect =
+    guessResult.name.correct &&
+    guessResult.afflatus.correct &&
+    guessResult.dmg_type.correct &&
+    guessResult.race.correct &&
+    guessResult.rarity.comparison === true &&
+    guessResult.version.comparison === true;
+  const renderArrow = (value: NumericComparison) => {
+    if (value === "Higher") return <FaArrowUp />;
+    if (value === "Lower") return <FaArrowDown />;
     return null;
   };
-
-  const getComparisonClass = (value: "higher" | "lower" | true) => {
+  const getComparisonClass = (value: NumericComparison) => {
     return value === true ? "correct" : "partial";
   };
+  const typeAnimation = lastAnimation && allCorrect ? "bounce-animate" : lastAnimation ? "flip-animate" : ""
 
   return (
-    <div className="guess-container">
+    <div className={`guess-container ${lastAnimation ? "fade-in" : ""}`}>
       <div
-        className={`guess-character ${guessResult.every((value) => value === true) ? "correct" : "incorrect"}`}
+        className={`guess-character ${allCorrect ? "correct" : "incorrect"}`}
       >
         <img src={`/icons/${slug}.webp`} alt={slug} className="guess-image" />
-        <span>{name}</span>
+        <span>{guessResult.name.value}</span>
       </div>
 
-      <div className={`guess-cell ${getComparisonClass(guessResult[0])}`}>
-        <span>{version}</span>
-        {renderArrow(guessResult[0])}
+      <div
+        className={`guess-cell ${getComparisonClass(guessResult.version.comparison)} ${typeAnimation}`}
+      >
+        <span>{guessResult.version.value}</span>
+        {renderArrow(guessResult.version.comparison)}
       </div>
 
-      <div className={`guess-cell ${getComparisonClass(guessResult[1])}`}>
-        <span>{rarity}</span>
-        {renderArrow(guessResult[1])}
+      <div
+        className={`guess-cell ${getComparisonClass(guessResult.rarity.comparison)} ${typeAnimation}`}
+      >
+        <span>{guessResult.rarity.value}</span>
+        {renderArrow(guessResult.rarity.comparison)}
       </div>
 
-      <div className={`guess-cell ${guessResult[2] ? "correct" : "incorrect"}`}>
-        {afflatus}
+      <div
+        className={`guess-cell ${guessResult.afflatus.correct ? "correct" : "incorrect"} ${typeAnimation}`}>
+        {guessResult.afflatus.value}
       </div>
 
-      <div className={`guess-cell ${guessResult[3] ? "correct" : "incorrect"}`}>
-        {dmgType}
+      <div
+        className={`guess-cell ${guessResult.dmg_type.correct ? "correct" : "incorrect"} ${typeAnimation}`}
+      >
+        {guessResult.dmg_type.value}
       </div>
 
-      <div className={`guess-cell ${guessResult[4] ? "correct" : "incorrect"}`}>
-        {race}
+      <div
+        className={`guess-cell ${guessResult.race.correct ? "correct" : "incorrect"} ${typeAnimation}`}
+      >
+        {guessResult.race.value}
       </div>
     </div>
   );

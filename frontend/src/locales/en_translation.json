@@ -26,7 +26,8 @@
     "allCharacters": "All Characters"
   },
   "input": {
-    "placeholder": "Pull the golden thread... e.g: Sonetto;"
+    "placeholderFalse": "Pull the golden thread... e.g: Sonetto;",
+    "placeholderTrue": "An old friend, back home;"
   },
   "guess": {
     "character": "Character",
@@ -59,5 +60,10 @@
     "list1": "Collaboration versions are treated as half versions when comparing release versions.",
     "list2": "The AC Collaboration is considered version 2.75 because it falls between Global versions 2.7 and 2.8.",
     "list3": "Daily answers may include characters currently available only on the CN server."
+  },
+  "winnerModal": {
+    "title": "Congratulations!",
+    "subtitle": "The character was...",
+    "footer": "Next character in:"
   }
 }

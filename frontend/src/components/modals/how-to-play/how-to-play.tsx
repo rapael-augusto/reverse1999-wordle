@@ -1,14 +1,14 @@
 import { createPortal } from "react-dom";
 import { useTranslation } from "react-i18next";
 import { IoMdClose } from "react-icons/io";
-import GuessBox from "../guess-box/guess-box";
-import "./how-to-play.css"
+import "./how-to-play.css";
+import GuessBox from "../../guess-box/guess-box";
 
 interface HowToPlayModalProps {
   onClose: () => void;
 }
 
-export default function HowToPlay({ onClose }: HowToPlayModalProps) {
+export default function HowToPlayModal({ onClose }: HowToPlayModalProps) {
   const { t } = useTranslation();
 
   return createPortal(
@@ -24,17 +24,37 @@ export default function HowToPlay({ onClose }: HowToPlayModalProps) {
           </button>
         </div>
         <section>
-          <h3>{t("hptModal.basics")}</h3>
+          <h3>{t("htpModal.basics")}</h3>
           <p style={{ marginBottom: "1rem" }}>{t("htpModal.line1")}</p>
           <GuessBox
             slug="liang-yue"
-            name="Liang Yue"
-            version={2.5}
-            rarity={6}
-            afflatus="Star"
-            dmgType="Reality"
-            race="Mixed"
-            guessResult={["lower", "lower", true, false, false]}
+            guessResult={{
+              name: {
+                value: "Liang Yue",
+                correct: false,
+              },
+              version: {
+                value: 2.5,
+                comparison: "Lower",
+              },
+              rarity: {
+                value: 6,
+                comparison: "Lower",
+              },
+              afflatus: {
+                value: "Star",
+                correct: true,
+              },
+              dmg_type: {
+                value: "Reality",
+                correct: false,
+              },
+              race: {
+                value: "Mixed",
+                correct: false,
+              },
+            }}
+            lastAnimation={false}
           />
           {Array.from({ length: 6 }, (_, index) => {
             const value = index + 2;

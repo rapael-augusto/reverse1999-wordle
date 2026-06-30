@@ -26,7 +26,8 @@
     "allCharacters": "Todos os Personagens"
   },
   "input": {
-    "placeholder": "Puxe o fio dourado... ex.: Sonetto;"
+    "placeholderFalse": "Puxe o fio dourado... ex.: Sonetto;",
+    "placeholderTrue": "Um velho amigo, de volta ao lar;"
   },
   "guess": {
     "character": "Personagem",
@@ -59,5 +60,10 @@
     "list1": "Versões de collab são tratadas como \"meias versões\" ao comparar versões de lançamento.",
     "list2": "A collab AC é considerada a versão 2.75, pois está entre as versões globais 2.7 e 2.8.",
     "list3": "As respostas diárias podem incluir personagens disponíveis atualmente apenas no servidor CN."
+  },
+  "winnerModal": {
+    "title": "Parabéns!",
+    "subtitle": "O personagem era...",
+    "footer": "Próximo personagem em:"
   }
 }

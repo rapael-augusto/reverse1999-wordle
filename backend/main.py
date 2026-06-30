@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from datetime import date
 import random
 from psycopg.rows import dict_row
@@ -6,6 +7,17 @@ from database import conn
 from schemas import SlugInput
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+        "http://127.0.0.1:8000"
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 characters = []
 
@@ -51,12 +63,34 @@ def guess_attempt(input: SlugInput):
         return None
 
     return {
-        "name": [guess_char["name"], True if guess_char["name"] == daily_char["name"] else False],
-        "rarity": [guess_char["rarity"], "Higher" if guess_char["rarity"] < daily_char["rarity"] 
-                   else "Lower" if guess_char["rarity"] > daily_char["rarity"] else True],
-        "afflatus": [guess_char["afflatus"], True if guess_char["afflatus"] == daily_char["afflatus"] else False],
-        "dmg_type": [guess_char["dmg_type"], True if guess_char["dmg_type"] == daily_char["dmg_type"] else False],
-        "race": [guess_char["race"], True if guess_char["race"] == daily_char["race"] else False],
-        "version": [guess_char["version"], "Higher" if guess_char["version"] < daily_char["version"] 
-                   else "Lower" if guess_char["version"] > daily_char["version"] else True],
+        "name": {
+            "value": guess_char["name"],
+            "correct": guess_char["name"] == daily_char["name"],
+        },
+        "rarity": {
+            "value": guess_char["rarity"],
+            "comparison":
+                "Higher" if guess_char["rarity"] < daily_char["rarity"]
+                else "Lower" if guess_char["rarity"] > daily_char["rarity"]
+                else True,
+        },
+        "afflatus": {
+            "value": guess_char["afflatus"],
+            "correct": guess_char["afflatus"] == daily_char["afflatus"],
+        },
+        "dmg_type": {
+            "value": guess_char["dmg_type"],
+            "correct": guess_char["dmg_type"] == daily_char["dmg_type"],
+        },
+        "race": {
+            "value": guess_char["race"],
+            "correct": guess_char["race"] == daily_char["race"],
+        },
+        "version": {
+            "value": guess_char["version"],
+            "comparison":
+                "Higher" if guess_char["version"] < daily_char["version"]
+                else "Lower" if guess_char["version"] > daily_char["version"]
+                else True,
+        },
     }

@@ -2,11 +2,11 @@ import { useState } from "react";
 import type { Theme } from "../../../types/theme";
 import { useTranslation } from "react-i18next";
 import { FaQuestion } from "react-icons/fa";
-import HowToPlay from "../../modals/how-to-play";
 import { MdBarChart } from "react-icons/md";
 import { IoMoon } from "react-icons/io5";
 import { IoMdSettings } from "react-icons/io";
-import "./header.css"
+import "./header.css";
+import HowToPlayModal from "../../modals/how-to-play/how-to-play";
 
 interface HeaderProps {
   setTheme: React.Dispatch<React.SetStateAction<Theme>>;
@@ -49,6 +49,9 @@ export default function Header({
 
   return (
     <header>
+      {isHtpModalOpen && (
+        <HowToPlayModal onClose={() => setIsHtpModalOpen(false)} />
+      )}
       <div className="header-title-wrapper">
         <p className="header-title">
           Reverse: 1999 <span>Wordle</span>
@@ -62,9 +65,6 @@ export default function Header({
           >
             <FaQuestion />
           </button>
-          {isHtpModalOpen && (
-            <HowToPlay onClose={() => setIsHtpModalOpen(false)} />
-          )}
         </div>
         <button title={t("header.statistics")}>
           <MdBarChart />
@@ -77,7 +77,7 @@ export default function Header({
             <IoMdSettings />
           </button>
           {isSettingsDropdownOpen && (
-            <div className="settings-dropdown">
+            <div className="header-dropdown">
               <div className="switch-wrapper">
                 <p>
                   {t("header.dropdowns.settings.animations")}{" "}
@@ -109,7 +109,7 @@ export default function Header({
             </div>
           )}
           {isThemeDropdownOpen && (
-            <div className="theme-dropdown">
+            <div className="header-dropdown">
               <button onClick={() => changeTheme("default")}>
                 {t("header.dropdowns.themes.default")}
               </button>

@@ -9,8 +9,8 @@ import Rain from "../animations/rain/rain";
 import Wave from "../animations/wave/wave";
 import Feathers from "../animations/feathers/feathers";
 import ChessBoard from "../animations/chessboard/chessboard";
-import "./main-layout.css"
-import { useWindowWidth } from "../hooks/useWindowWidth";
+import "./main-layout.css";
+import { useWindowWidth } from "../../hooks/useWindowWidth";
 
 export default function MainLayout() {
   const [theme, setTheme] = useState<Theme>("default");
@@ -29,10 +29,7 @@ export default function MainLayout() {
       <NoisyBackground />
 
       {(theme === "default" || theme === "gray") && isAnimationOn && (
-        <Rain
-          upwards={theme !== "gray"}
-          amount={width > 850 ? 150 : 50}
-        />
+        <Rain upwards={theme !== "gray"} amount={width > 850 ? 150 : 50} />
       )}
       {theme === "blue" && isAnimationOn && <Wave />}
       {theme === "red" && isAnimationOn && <Feathers />}
