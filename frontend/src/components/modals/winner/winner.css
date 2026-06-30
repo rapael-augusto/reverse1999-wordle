@@ -1,0 +1,85 @@
+.winner-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(6px);
+  z-index: 9999;
+  overflow: auto;
+  padding: 1rem;
+}
+
+.winner-dropdown {
+  width: min(600px, 60vw), fit-content;
+  max-height: 80vh;
+  color: var(--font-color);
+  background: color-mix(in srgb, var(--secondary-color) 98%, var(--font-color));
+  border: 1px solid var(--primary-color);
+  border-radius: 1rem;
+  padding: 1.75rem;
+  gap: 1rem;
+  box-shadow:
+    0 0 2rem rgba(0, 0, 0, 0.3),
+    0 0 0.5rem color-mix(in srgb, var(--primary-color) 30%, transparent);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.winner-header {
+  display: flex;
+  align-items: flex-start;
+}
+
+.close-modal {
+  margin-left: auto;
+  background: transparent;
+  border: none;
+  color: var(--font-color);
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.winner-image {
+  width: 350px;
+  height: 350px;
+  object-fit: cover;
+}
+
+.winner-body,
+.winner-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+
+.winner-body {
+  gap: 0.5rem;
+}
+
+@media (max-width: 850px) {
+  .winner-image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+  }
+}
+
+/* ANIMATIONS */
+.fade-in {
+  animation: fadeInOpacity 300ms ease-in;
+}
+
+@keyframes fadeInOpacity {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
