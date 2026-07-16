@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import "./footer.css"
+import "./footer.css";
 
 export default function Footer() {
   const { t } = useTranslation();
@@ -23,7 +23,12 @@ export default function Footer() {
         .
       </p>
 
-      <p>{t("footer.madeBy")}</p>
+      <p>
+        {t("footer.madeBy")}{" "}
+        <a href="https://tally.so/r/Pdylke" target="_blank">
+          Feedback {t("footer.feedback")}
+        </a>
+      </p>
     </footer>
   );
 }
