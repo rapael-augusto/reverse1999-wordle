@@ -1,0 +1,8 @@
+.special-status-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+  margin: auto;
+}
