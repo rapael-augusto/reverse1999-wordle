@@ -27,7 +27,13 @@
   },
   "input": {
     "placeholderFalse": "Pull the golden thread... e.g: Sonetto;",
-    "placeholderTrue": "An old friend, back home;"
+    "placeholderTrue": "An old friend, back home;",
+    "restartGame": "Play Again",
+    "result": "See result",
+    "noCharacterFound": "No Character Found."
+  },
+  "progress": {
+    "title": "Tries"
   },
   "guess": {
     "character": "Character",
@@ -45,7 +51,8 @@
     "by": "by Bluepoch",
     "inspiredBy": "Inspired by",
     "and": "and",
-    "madeBy": "Made by yours truly, \"R\"."
+    "madeBy": "Made by yours truly, \"R\".",
+    "feedback": "here!"
   },
   "htpModal": {
     "basics": "The basics:",
@@ -57,13 +64,27 @@
     "line6": "Yellow indicates a partial match.",
     "line7": "Gray indicates an incorrect match.",
     "notes": "Notes:",
-    "list1": "Collaboration versions are treated as half versions when comparing release versions.",
-    "list2": "The AC Collaboration is considered version 2.75 because it falls between Global versions 2.7 and 2.8.",
-    "list3": "Daily answers may include characters currently available only on the CN server."
+    "list1": "Collaboration versions are treated as half versions when comparing release versions;",
+    "list2": "The AC Collaboration is considered version 2.75 because it falls between Global versions 2.7 and 2.8;",
+    "list3": "Daily answers may include characters currently available only on the CN server;"
   },
   "winnerModal": {
     "title": "Congratulations!",
+    "loseTitle": "Try again tomorrow... T-T",
     "subtitle": "The character was...",
-    "footer": "Next character in:"
+    "footer": "Next character in:",
+    "share": "Share"
+  },
+  "statisticsModal": {
+    "title1": "Wins",
+    "title2": "Win %",
+    "title3": "Played",
+    "title4": "Guess Avg",
+    "daily": "Daily mode",
+    "unlimited": "Unlimited mode",
+    "zero": "Nothing to see here..., play a game first!"
+  },
+  "errorPage": {
+    "subtitle": "Please reload the website!"
   }
 }

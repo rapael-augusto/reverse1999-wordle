@@ -12,7 +12,7 @@
 }
 
 .how-to-play-dropdown {
-  width: min(800px, 90vw), fit-content;
+  width: fit-content;
   max-height: 85vh;
   color: var(--font-color);
   background: color-mix(in srgb, var(--secondary-color) 98%, var(--font-color));
