@@ -1,80 +1,60 @@
-import { useTranslation } from "react-i18next";
-import { IoSearchOutline } from "react-icons/io5";
-import GuessBox from "../../components/guess-box/guess-box";
-import "./home.css";
-import { useWindowWidth } from "../../hooks/useWindowWidth";
 import Navbar from "../../components/layout/nav/nav";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { CharacterService } from "../../services/characterService";
-import { SyncLoader } from "react-spinners";
 import type { CharacterGuess } from "../../types/characterGuess";
 import confetti from "canvas-confetti";
 import WinnerModal from "../../components/modals/winner/winner";
+import GuessLegend from "../../components/guess-legend/guess-legend";
+import CharacterSearch from "../../components/char-search/char-search";
+import type { Character } from "../../types/character";
+import GuessHistory from "../../components/guess-history/guess-history";
+import type { GuessResult } from "../../types/guessResult";
+import LoadingScreen from "../exceptions/loading/loading";
+import ErrorScreen from "../exceptions/error/error";
+import ProgressBar from "../../components/progress-bar/progress-bar";
+import "./home.css";
+import { useTranslation } from "react-i18next";
 
 const characterService = new CharacterService();
 
-export interface Character {
-  name: string;
-  slug: string;
-}
-
 export default function Home() {
   const [characters, setCharacters] = useState<Character[]>([]);
-  const [characterSearch, setCharacterSearch] = useState("");
-  const [characterGuesses, setCharacterGuesses] = useState<CharacterGuess[]>(
-    [],
-  );
-  const [isFocused, setIsFocused] = useState(false);
+  const [dailyCharacter, setDailyCharacter] = useState<Character | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [isFinished, setIsFinished] = useState(false);
   const [isWinModalOpen, setIsWinModalOpen] = useState(false);
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const width = useWindowWidth();
   const { t } = useTranslation();
-  const legend =
-    width > 850
-      ? [
-          t("guess.character"),
-          t("guess.version"),
-          t("guess.rarity"),
-          t("guess.afflatus"),
-          t("guess.damageType"),
-          t("guess.race"),
-        ]
-      : [
-          `${t("guess.character")} / ${t("guess.afflatus")}`,
-          `${t("guess.version")} / ${t("guess.damageType")}`,
-          `${t("guess.rarity")} / ${t("guess.race")}`,
-        ];
-
-  const filteredCharacters = useMemo(() => {
-    const query = characterSearch.toLowerCase();
-    const guessedSlugs = characterGuesses.map((c) => c.guessResult.name.value);
-    const list = characters.filter(
-      (item) =>
-        item.name.toLowerCase().startsWith(query) &&
-        !guessedSlugs.includes(item.name),
-    );
-
-    return [...list].sort((a, b) => a.name.localeCompare(b.name));
-  }, [characters, characterSearch, characterGuesses]);
 
   const getToday = () => new Date().toISOString().split("T")[0];
 
-  const showWinnerModal = () => {
-    const lastShown = localStorage.getItem("winner-modal-date");
-    if (lastShown !== getToday()) {
-      setTimeout(() => {
-        setIsWinModalOpen(true);
-      }, 2000);
-    }
-  };
+  const [characterGuesses, setCharacterGuesses] = useState<CharacterGuess[]>(
+    () => {
+      const saved = localStorage.getItem("daily-game");
+      if (!saved) return [];
+      const data = JSON.parse(saved);
+      return data.date === getToday() ? data.guesses : [];
+    },
+  );
 
-  const handleCloseWinnerModal = () => {
-    localStorage.setItem("winner-modal-date", getToday());
-    setIsWinModalOpen(false);
-  };
+  const [isFinished, setIsFinished] = useState(() => {
+    const saved = localStorage.getItem("daily-game");
+    if (!saved) return false;
+    const data = JSON.parse(saved);
+    return data.date === getToday() ? data.finished : false;
+  });
+
+  const MAX_TRIES = 5;
+
+  function isCorrectGuess(result: GuessResult) {
+    return (
+      result.name.correct &&
+      result.afflatus.correct &&
+      result.dmg_type.correct &&
+      result.race.correct &&
+      result.rarity.comparison &&
+      result.version.comparison
+    );
+  }
 
   const handleCelebrate = () => {
     confetti({
@@ -90,29 +70,76 @@ export default function Home() {
   };
 
   const handleGuessAppend = async (guess: string) => {
+    if (isFinished || characterGuesses.length >= MAX_TRIES) return;
     try {
       const guessResult = await characterService.dailyGuess(guess);
-      const allCorrect =
-        guessResult.name.correct &&
-        guessResult.afflatus.correct &&
-        guessResult.dmg_type.correct &&
-        guessResult.race.correct &&
-        guessResult.rarity.comparison === true &&
-        guessResult.version.comparison === true;
-      if (allCorrect) {
-        showWinnerModal();
-        handleCelebrate();
-        setIsFinished(true);
+      const newGuess: CharacterGuess = {
+        slug: guess,
+        guessResult,
+      };
+      const newGuesses = [newGuess, ...characterGuesses];
+      setCharacterGuesses(newGuesses);
+
+      if (isCorrectGuess(guessResult)) {
+        await finishGame(true, newGuesses.length);
+      } else if (newGuesses.length >= MAX_TRIES) {
+        await finishGame(false, newGuesses.length);
       }
-      const newGuess: CharacterGuess = { slug: guess, guessResult };
-      setCharacterGuesses((prev) => [newGuess, ...prev]);
     } catch (e) {
       setError("Failed to send guess...");
       console.log(e);
-    } finally {
-      setCharacterSearch("");
-      setIsFocused(false);
     }
+  };
+
+  const fetchDailyResult = async () => {
+    try {
+      const data = await characterService.getDailyResult();
+      setDailyCharacter(data);
+    } catch (e) {
+      console.error(e);
+      setError("Failed to load daily result...");
+    }
+  };
+
+  const finishGame = async (won: boolean, guessesCount: number) => {
+    setIsFinished(won);
+    await fetchDailyResult();
+
+    if (won) {
+      handleCelebrate();
+    }
+
+    setTimeout(() => setIsWinModalOpen(true), 2000);
+
+    const alreadyUpdated =
+      localStorage.getItem("statistics-date") === getToday();
+    if (alreadyUpdated) return;
+
+    const stats = JSON.parse(
+      localStorage.getItem("statistics") ??
+        JSON.stringify({
+          daily: {
+            played: 0,
+            wins: 0,
+            totalGuesses: 0,
+          },
+          unlimited: {
+            played: 0,
+            wins: 0,
+            totalGuesses: 0,
+          },
+        }),
+    );
+
+    stats.daily.played += 1;
+
+    if (won) {
+      stats.daily.wins += 1;
+      stats.daily.totalGuesses += guessesCount;
+    }
+
+    localStorage.setItem("statistics", JSON.stringify(stats));
+    localStorage.setItem("statistics-date", getToday());
   };
 
   useEffect(() => {
@@ -131,123 +158,62 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        wrapperRef.current &&
-        !wrapperRef.current.contains(event.target as Node)
-      ) {
-        setIsFocused(false);
-      }
+    localStorage.setItem(
+      "daily-game",
+      JSON.stringify({
+        date: getToday(),
+        guesses: characterGuesses,
+        finished: isFinished,
+      }),
+    );
+  }, [characterGuesses, isFinished]);
+
+  useEffect(() => {
+    if (!isFinished) return;
+    const load = async () => {
+      await fetchDailyResult();
     };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    load();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (loading) {
-    return (
-      <div className="special-status-container">
-        <SyncLoader
-          color="var(--primary-color)"
-          loading
-          size={35}
-          margin={10}
-        />
-        <p style={{ color: "#262626" }}>Loading...</p>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="special-status-container">
-        <p>{error}</p>
-      </div>
-    );
-  }
+  if (loading) return <LoadingScreen />;
+  if (error) return <ErrorScreen message={error} />;
 
   return (
     <>
-      {isWinModalOpen && (
+      {isWinModalOpen && dailyCharacter && (
         <WinnerModal
-          character={{
-            slug: characterGuesses[0].slug,
-            name: characterGuesses[0].guessResult.name.value,
-          }}
-          onClose={handleCloseWinnerModal}
+          character={dailyCharacter}
+          characterGuesses={characterGuesses}
+          onClose={() => setIsWinModalOpen(false)}
+          showDailyTime
+          winStatus={isFinished}
         />
       )}
       <Navbar />
-      <div className="search-wrapper" ref={wrapperRef}>
-        <IoSearchOutline />
-        <input
-          className="input-character"
-          type="text"
-          placeholder={
-            isFinished
-              ? t("input.placeholderTrue")
-              : t("input.placeholderFalse")
-          }
-          value={characterSearch}
-          onChange={(e) => setCharacterSearch(e.target.value)}
-          onFocus={() => setIsFocused(true)}
-          disabled={isFinished}
-        />
-        {isFocused && characterSearch.length > 0 && (
-          <div className="search-dropdown">
-            {filteredCharacters.length > 0 ? (
-              filteredCharacters.map((c) => (
-                <button
-                  className="search-select"
-                  key={c.slug}
-                  onClick={() => {
-                    handleGuessAppend(c.slug);
-                  }}
-                >
-                  <img src={`/icons/${c.slug}.webp`} alt={c.slug} />
-                  <p>{c.name}</p>
-                </button>
-              ))
-            ) : (
-              <div className="search-select">
-                <p>No character found...</p>
-              </div>
-            )}
-          </div>
-        )}
-      </div>
-      <div className="guess-wrapper">
-        <div className="guess-header">
-          {legend.map((item) => (
-            <div key={item}>{item}</div>
-          ))}
+      <CharacterSearch
+        characters={characters}
+        guessedCharacters={characterGuesses}
+        disabled={isFinished || characterGuesses.length >= MAX_TRIES}
+        onGuess={handleGuessAppend}
+      />
+      <ProgressBar
+        currentTries={characterGuesses.length}
+        maxTries={MAX_TRIES}
+      />
+      {isFinished && (
+        <div className="result-button-wrapper">
+          <button
+            className="result-button"
+            onClick={() => setIsWinModalOpen(true)}
+          >
+            {t("input.result")}
+          </button>
         </div>
-        {characterGuesses &&
-          characterGuesses.length > 0 &&
-          characterGuesses.map((c) => (
-            <GuessBox
-              key={c.slug}
-              slug={c.slug}
-              guessResult={c.guessResult}
-              lastAnimation={c.slug === characterGuesses[0].slug ? true : false}
-            />
-          ))}
-      </div>
-      <div className="guess-legend">
-        <div className="legend-item">
-          <span className="legend-color correct" />
-          {t("guess.correct")}
-        </div>
-        <div className="legend-item">
-          <span className="legend-color partial" />
-          {t("guess.partial")}
-        </div>
-        <div className="legend-item">
-          <span className="legend-color incorrect" />
-          {t("guess.wrong")}
-        </div>
-      </div>
+      )}
+      <GuessHistory guessedCharacters={characterGuesses} />
+      <GuessLegend />
     </>
   );
 }
