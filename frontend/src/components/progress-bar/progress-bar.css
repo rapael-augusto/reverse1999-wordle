@@ -1,0 +1,35 @@
+.progress-container {
+  margin-bottom: 1rem;
+  gap: 0.3rem;
+  width: min(450px, 90%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--font-color);
+}
+
+.progress-wrapper {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 1rem;
+}
+
+.progress-items-wrapper {
+  display: grid;
+  width: 100%;
+  gap: 0.1rem;
+}
+
+.progress-item {
+  display: block;
+  width: 100%;
+  height: 0.5rem;
+  background-color: var(--secondary-color);
+  border-radius: 999px;
+  box-shadow: 0 0 1px var(--font-color);
+}
+
+.progress-item.full {
+  background-color: var(--primary-color);
+}

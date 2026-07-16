@@ -1,0 +1,47 @@
+.guess-legend {
+  align-self: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  background: var(--secondary-color);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--primary-color-light);
+  display: flex;
+  gap: 1rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--font-color);
+}
+
+.legend-color {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 0.2rem;
+}
+
+.legend-color.correct {
+  background: #3c8c52;
+}
+
+.legend-color.partial {
+  background: #c9a227;
+}
+
+.legend-color.incorrect {
+  background: var(--incorrect-color);
+}
+
+@media (max-width: 850px) {
+  .legend-item {
+    font-size: 0.8rem;
+  }
+
+  .legend-color {
+    width: 0.8rem;
+    height: 0.8rem;
+  }
+}

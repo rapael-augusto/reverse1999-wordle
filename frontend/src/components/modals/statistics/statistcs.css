@@ -1,4 +1,4 @@
-.how-to-play-overlay {
+.statistics-overlay {
   position: fixed;
   inset: 0;
   display: flex;
@@ -11,7 +11,7 @@
   padding: 1rem;
 }
 
-.how-to-play-dropdown {
+.statistics-dropdown {
   width: fit-content;
   max-height: 85vh;
   color: var(--font-color);
@@ -28,21 +28,32 @@
     0 0 0.5rem color-mix(in srgb, var(--primary-color) 30%, transparent);
 }
 
-.how-to-play-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.statistics-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
 
-.close-modal {
-    background: transparent;
-    border: none;
-    color: var(--font-color);
-    font-size: 1.2rem;
-    cursor: pointer;
-    position: sticky;
+.statistics-display-grip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, auto);
+  gap: 1rem;
+  text-align: center;
 }
 
-section p {
-    margin-bottom: 0.2rem;
+.statistics-display-grip p:nth-child(-n + 4) {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.statistics-display-grip p:nth-child(n + 5) {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.statistcs-break-line {
+  width: 100%;
+  opacity: 0.2;
 }

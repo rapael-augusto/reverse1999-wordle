@@ -16,6 +16,7 @@ footer p a {
   text-decoration: none;
   color: var(--primary-color);
   transition: all 0.2s ease;
+  cursor: pointer;
 }
 
 footer p a:hover {

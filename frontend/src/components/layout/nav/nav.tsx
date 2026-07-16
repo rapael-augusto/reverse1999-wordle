@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
-import "./nav.css"
+import "./nav.css";
 
 export default function Navbar() {
   const { t } = useTranslation();
@@ -13,14 +13,12 @@ export default function Navbar() {
       >
         {t("nav.daily")}
       </NavLink>
-
       <NavLink
         to="/unlimited"
         className={({ isActive }) => (isActive ? "active" : "unactive")}
       >
         {t("nav.unlimited")}
       </NavLink>
-
       <NavLink
         to="/all-characters"
         className={({ isActive }) => (isActive ? "active" : "unactive")}

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Theme } from "../../../types/theme";
 import { useTranslation } from "react-i18next";
 import { FaQuestion } from "react-icons/fa";
@@ -7,6 +7,7 @@ import { IoMoon } from "react-icons/io5";
 import { IoMdSettings } from "react-icons/io";
 import "./header.css";
 import HowToPlayModal from "../../modals/how-to-play/how-to-play";
+import StatisticsModal from "../../modals/statistics/statistics";
 
 interface HeaderProps {
   setTheme: React.Dispatch<React.SetStateAction<Theme>>;
@@ -26,7 +27,10 @@ export default function Header({
   const [isThemeDropdownOpen, setIsThemeDropdownOpen] = useState(false);
   const [isSettingsDropdownOpen, setIsSettingsDropdownOpen] = useState(false);
   const [isHtpModalOpen, setIsHtpModalOpen] = useState(false);
+  const [isStatisticsModalOpen, setIsStatisticsModalOpen] = useState(false);
   const { t } = useTranslation();
+  const settingsRef = useRef<HTMLDivElement>(null);
+  const themeRef = useRef<HTMLDivElement>(null);
 
   const changeTheme = (theme: Theme) => {
     setTheme(theme);
@@ -47,10 +51,32 @@ export default function Header({
     setLanguage(e.target.value);
   };
 
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        settingsRef.current &&
+        !settingsRef.current.contains(event.target as Node)
+      ) {
+        setIsSettingsDropdownOpen(false);
+      }
+      if (
+        themeRef.current &&
+        !themeRef.current.contains(event.target as Node)
+      ) {
+        setIsThemeDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
     <header>
       {isHtpModalOpen && (
         <HowToPlayModal onClose={() => setIsHtpModalOpen(false)} />
+      )}
+      {isStatisticsModalOpen && (
+        <StatisticsModal onClose={() => setIsStatisticsModalOpen(false)} />
       )}
       <div className="header-title-wrapper">
         <p className="header-title">
@@ -66,7 +92,10 @@ export default function Header({
             <FaQuestion />
           </button>
         </div>
-        <button title={t("header.statistics")}>
+        <button
+          title={t("header.statistics")}
+          onClick={() => setIsStatisticsModalOpen(!isStatisticsModalOpen)}
+        >
           <MdBarChart />
         </button>
         <button title={t("header.themes")} onClick={openThemeDropdown}>
@@ -77,7 +106,7 @@ export default function Header({
             <IoMdSettings />
           </button>
           {isSettingsDropdownOpen && (
-            <div className="header-dropdown">
+            <div className="header-dropdown" ref={settingsRef}>
               <div className="switch-wrapper">
                 <p>
                   {t("header.dropdowns.settings.animations")}{" "}
@@ -109,7 +138,7 @@ export default function Header({
             </div>
           )}
           {isThemeDropdownOpen && (
-            <div className="header-dropdown">
+            <div className="header-dropdown" ref={themeRef}>
               <button onClick={() => changeTheme("default")}>
                 {t("header.dropdowns.themes.default")}
               </button>

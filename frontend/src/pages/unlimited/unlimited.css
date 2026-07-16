@@ -1,3 +1,31 @@
-h1 {
-    color: var(--font-color);
+.restart-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 0;
+}
+
+.restart-button {
+  background: var(--secondary-color);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--primary-color-light);
+  border-radius: 0.3rem;
+  padding: 0.3rem 1.5rem;
+  color: var(--font-color);
+  font-size: 1rem;
+  font-family: "Tektur", sans-serif;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.restart-button:hover {
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 850px) {
+  .restart-button {
+    font-size: 0.75rem;
+  }
 }
