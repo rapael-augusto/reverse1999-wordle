@@ -5,6 +5,7 @@
 ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![FastAPI](https://img.shields.io/badge/FastAPI-005571.svg?style=for-the-badge&logo=fastapi)
+![Docker](https://img.shields.io/badge/docker-257bd6?style=for-the-badge&logo=docker&logoColor=white)
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
@@ -14,7 +15,7 @@
 
 A Wordle-inspired guessing game based on Reverse: 1999 characters, featuring deterministic daily challenges and attribute-based comparison mechanics.
 
-The concept: using a deterministic shuffle with a fixed seed to ensure reproducible ordering, every day there's a different character chosen from a database in postgreSQL, you can take guesses and get hints about specific characteristics such as afflatus, version, etc, if it's right, wrong, higher, or lower. Each guess is supposed to get you closer to today's character, good luck!
+The concept: using a deterministic shuffle with a fixed seed to ensure reproducible ordering, every day there's a different character chosen from a database in PostgreSQL. You can take guesses and get hints about specific characteristics such as afflatus, version, etc — whether it's right, wrong, higher, or lower. Each guess is supposed to get you closer to today's character. Good luck!
 
 ## Architecture
 
@@ -45,7 +46,7 @@ User → React Frontend → FastAPI Backend → PostgreSQL / In-memory Data → 
 
 ## Current Project State
 
-The project is currently in a functional MVP stage.
+The project is currently in a near-complete stage, pending Docker setup and final bug fixes.
 
 ### Backend
 
@@ -57,9 +58,16 @@ The project is currently in a functional MVP stage.
 
 ### Frontend
 
-- Initial React application structure implemented;
-- Static UI for game interface;
-- Responsive layout and component-based structure;
+- Complete React application with component-based structure;
+- Full game interface with daily and unlimited modes;
+- Attribute-based guess history with visual feedback (correct, partial, incorrect);
+- Progress bar tracking remaining attempts;
+- Winner/loser modal with countdown to next daily character;
+- Shareable results via clipboard copy and Twitter post;
+- Statistics tracking via localStorage;
+- Internationalization support via i18next;
+- Multiple visual themes with animated backgrounds;
+- Fully responsive layout supporting mobile and desktop;
 
 ### Database
 
@@ -97,18 +105,18 @@ The project is currently in a functional MVP stage.
 - Clean Code principles;
 
 ## Endpoint Map:
-
+ 
 The API url base is `http://127.0.0.1:8000/`. All endpoints are listed below.
-
+ 
 ### Characters — `/characters`
-
+ 
 | Method | Endpoint             | Description                  | Authentication |
 | ------ | -------------------- | ---------------------------- | -------------- |
 | `GET`  | `/characters`        | Returns all characters       | No             |
 | `GET`  | `/characters/{slug}` | Returns a specific character | No             |
-
+ 
 **Response of `/characters`:**
-
+ 
 ```json
 [
   {
@@ -122,9 +130,9 @@ The API url base is `http://127.0.0.1:8000/`. All endpoints are listed below.
   // more characters...
 ]
 ```
-
+ 
 **Response of `/characters/{slug}` with an example:**
-
+ 
 ```json
 {
   "name": "Liang Yue",
@@ -135,25 +143,25 @@ The API url base is `http://127.0.0.1:8000/`. All endpoints are listed below.
   "version": 2.5
 }
 ```
-
-**Note:** The definition of "slug" in this case is the lowercase name of the character without any accent or punction, and any space is changed for a "-". Example: Ms. New Babel -> ms-new-babel.
-
+ 
+**Note:** The definition of "slug" in this case is the lowercase name of the character without any accent or punctuation, and any space is changed for a "-". Example: Ms. New Babel -> ms-new-babel.
+ 
 ### Daily Guess — `/guess`
-
+ 
 | Method | Endpoint | Description                                           | Authentication |
 | ------ | -------- | ----------------------------------------------------- | -------------- |
 | `POST` | `/guess` | Each field returns a tuple: [value, comparisonResult] | No             |
-
+ 
 **Body of `/guess`:**
-
+ 
 ```json
 {
   "slug": "liang-yue"
 }
 ```
-
+ 
 **Response of `/guess`:**
-
+ 
 ```json
 {
   "name": ["Liang Yue", false],
@@ -162,6 +170,51 @@ The API url base is `http://127.0.0.1:8000/`. All endpoints are listed below.
   "dmg_type": ["Reality", false],
   "race": ["Mixed", false],
   "version": [2.5, "Lower"]
+}
+```
+ 
+### Unlimited Guess — `/guess/{id}`
+ 
+| Method | Endpoint       | Description                                              | Authentication |
+| ------ | -------------- | -------------------------------------------------------- | -------------- |
+| `POST` | `/guess/{id}`  | Guess against a specific character by id (unlimited mode) | No             |
+ 
+**Body of `/guess/{id}`:**
+ 
+```json
+{
+  "slug": "liang-yue"
+}
+```
+ 
+**Response of `/guess/{id}`:** same structure as `/guess`.
+ 
+### Random Character — `/characters/random-id`
+ 
+| Method | Endpoint                  | Description                        | Authentication |
+| ------ | ------------------------- | ---------------------------------- | -------------- |
+| `GET`  | `/characters/random-id`   | Returns a random character id      | No             |
+ 
+**Response of `/characters/random-id`:**
+ 
+```json
+{
+  "id": 42
+}
+```
+ 
+### Daily Result — `/guess/daily-result`
+ 
+| Method | Endpoint               | Description                                        | Authentication |
+| ------ | ---------------------- | -------------------------------------------------- | -------------- |
+| `GET`  | `/guess/daily-result`  | Returns today's character name and slug            | No             |
+ 
+**Response of `/guess/daily-result`:**
+ 
+```json
+{
+  "name": "Baby Blue",
+  "slug": "baby-blue"
 }
 ```
 
