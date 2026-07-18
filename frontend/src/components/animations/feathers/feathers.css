@@ -6,7 +6,7 @@
   height: 100dvh;
   overflow: hidden;
   pointer-events: none;
-  z-index: -1;
+  z-index: 0;
 }
 
 .feather-item {
