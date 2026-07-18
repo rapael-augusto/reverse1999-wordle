@@ -1,0 +1,57 @@
+name: r1999-wordle
+
+services:
+  database:
+    image: postgres:17
+    env_file:
+      - ./.env
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "5433:5432"
+    networks:
+      - internal-net
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./database:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+  
+  backend:
+    image: r1999-backend
+    build: ./backend
+    env_file:
+      - ./.env
+    ports:
+      - "8000:8000"
+    networks:
+      - public-net
+      - internal-net
+    environment:
+      DB_HOST: database
+    depends_on:
+      database:
+        condition: service_healthy
+  
+  frontend:
+    image: r1999-frontend
+    build: ./frontend
+    ports:
+      - "5173:5173"
+    networks:
+      - public-net
+    depends_on:
+      - backend
+
+networks:
+  public-net:
+  internal-net:
+
+volumes:
+  postgres-data:
+    driver: local

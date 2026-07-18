@@ -1,8 +1,8 @@
 .wrapper {
-  flex: 1;
   min-height: 100dvh;
   display: grid;
   grid-template-rows: clamp(30px, 30vh, 100px) 1fr clamp(30px, 15vh, 60px);
+  z-index: 1;
 }
 
 .main-container {
@@ -13,7 +13,6 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 1.5rem;
   display: flex;
   flex-direction: column;
   padding: 0 1.5rem 1.5rem 1.5rem;
