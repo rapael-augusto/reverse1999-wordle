@@ -5,4 +5,5 @@
   align-items: center;
   gap: 0.8rem;
   margin: auto;
+  color: var(--font-color);
 }
