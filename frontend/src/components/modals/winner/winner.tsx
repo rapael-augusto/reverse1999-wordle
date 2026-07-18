@@ -21,7 +21,7 @@ interface TimeLeft {
   seconds: number;
 }
 
-const FIRST_GAME_DATE = new Date(2026, 6, 16);
+const FIRST_GAME_DATE = new Date(2026, 6, 18);
 FIRST_GAME_DATE.setHours(0, 0, 0, 0);
 
 function getDayNumber(): number {
