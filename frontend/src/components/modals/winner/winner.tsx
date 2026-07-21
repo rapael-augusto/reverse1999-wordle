@@ -6,6 +6,7 @@ import { createPortal } from "react-dom";
 import type { Character } from "../../../types/character";
 import type { CharacterGuess } from "../../../types/characterGuess";
 import { FaCopy, FaTwitter } from "react-icons/fa";
+import { getBrazilDate } from "../../../utils/date";
 
 interface WinnerModalProps {
   onClose: () => void;
@@ -25,7 +26,7 @@ const FIRST_GAME_DATE = new Date(2026, 6, 18);
 FIRST_GAME_DATE.setHours(0, 0, 0, 0);
 
 function getDayNumber(): number {
-  const today = new Date();
+  const today = getBrazilDate();
   today.setHours(0, 0, 0, 0);
   const diff = today.getTime() - FIRST_GAME_DATE.getTime();
   return Math.floor(diff / (1000 * 60 * 60 * 24)) + 1;
@@ -68,7 +69,7 @@ export default function WinnerModal({
   const [copied, setCopied] = useState(false);
 
   const calculateTimeLeft = (): TimeLeft => {
-    const now = new Date();
+    const now = getBrazilDate();
     const tomorrow = new Date(now);
     tomorrow.setDate(now.getDate() + 1);
     tomorrow.setHours(0, 0, 0, 0);
