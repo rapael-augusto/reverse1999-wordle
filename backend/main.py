@@ -25,8 +25,8 @@ with conn.cursor(row_factory=dict_row) as cur:
     cur.execute("SELECT * FROM characters ORDER BY slug")
     characters = cur.fetchall()
 
-random.seed(37)
-random.shuffle(characters)
+rng = random.Random(37)
+rng.shuffle(characters)
 
 rng = random.SystemRandom()
 
@@ -155,19 +155,3 @@ def get_daily_result():
         "name": daily_char["name"],
         "slug": daily_char["slug"]
     }
-
-@app.get("/debug")
-def debug():
-    today = datetime.now(ZoneInfo("America/Sao_Paulo")).date()
-
-    return {
-        "today": str(today),
-        "ordinal": today.toordinal(),
-        "count": len(characters),
-        "index": today.toordinal() % len(characters),
-        "daily": get_daily_char()["slug"],
-    }
-
-@app.get("/debug/index/{i}")
-def debug_index(i: int):
-    return characters[i]
