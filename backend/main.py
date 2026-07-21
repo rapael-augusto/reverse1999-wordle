@@ -22,7 +22,7 @@ app.add_middleware(
 characters = []
 
 with conn.cursor(row_factory=dict_row) as cur:
-    cur.execute("SELECT * FROM characters")
+    cur.execute("SELECT * FROM characters ORDER BY slug")
     characters = cur.fetchall()
 
 random.seed(37)
