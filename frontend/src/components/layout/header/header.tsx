@@ -26,7 +26,11 @@ export default function Header({
 }: HeaderProps) {
   const [isThemeDropdownOpen, setIsThemeDropdownOpen] = useState(false);
   const [isSettingsDropdownOpen, setIsSettingsDropdownOpen] = useState(false);
-  const [isHtpModalOpen, setIsHtpModalOpen] = useState(false);
+  const [isHtpModalOpen, setIsHtpModalOpen] = useState(() => {
+    const saved = localStorage.getItem("statistics");
+    if (!saved) return true;
+    else return false;
+  });
   const [isStatisticsModalOpen, setIsStatisticsModalOpen] = useState(false);
   const { t } = useTranslation();
   const settingsRef = useRef<HTMLDivElement>(null);

@@ -1,9 +1,10 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from datetime import date
+from datetime import date, datetime
+from zoneinfo import ZoneInfo
 import random
 from psycopg.rows import dict_row
-from database import conn
+from database import conn # type: ignore
 from schemas import SlugInput
 import os
 
@@ -30,7 +31,8 @@ random.shuffle(characters)
 rng = random.SystemRandom()
 
 def get_daily_char():
-    return characters[date.today().toordinal()%len(characters)]
+    today = datetime.now(ZoneInfo("America/Sao_Paulo")).date()
+    return characters[today.toordinal() % len(characters)]
 
 @app.get("/characters")
 def get_all_characters():
@@ -103,7 +105,7 @@ def guess_attempt(input: SlugInput):
     }
 
 @app.post("/guess/{id}")
-def guess_attempt(id: int, input: SlugInput):
+def guess_attempt_id(id: int, input: SlugInput):
     guess_char = next((c for c in characters if c["slug"] == input.slug), None)
     specific_char = next((c for c in characters if c["id"] == id), None)
 
