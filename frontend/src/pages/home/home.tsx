@@ -174,7 +174,7 @@ export default function Home() {
       await fetchDailyResult();
     };
     load();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (loading) return <LoadingScreen />;
