@@ -54,7 +54,7 @@ function buildShareText(
   const tries = winStatus ? `${characterGuesses.length}/5` : "X/5";
   const rows = [...characterGuesses].reverse().map(guessToEmojis).join("\n");
 
-  return `📖 R1999dle #${day} ${tries}\n${rows}\n\n(insert link)`;
+  return `📖 R1999dle #${day} ${tries}\n${rows}\n\nhttps://r1999dle.vercel.app/`;
 }
 
 export default function WinnerModal({

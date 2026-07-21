@@ -31,9 +31,12 @@ export default function Header({
   const { t } = useTranslation();
   const settingsRef = useRef<HTMLDivElement>(null);
   const themeRef = useRef<HTMLDivElement>(null);
+  const themeButtonRef = useRef<HTMLButtonElement>(null);
+  const settingsButtonRef = useRef<HTMLButtonElement>(null);
 
   const changeTheme = (theme: Theme) => {
     setTheme(theme);
+    localStorage.setItem("theme", theme);
     document.documentElement.setAttribute("data-theme", theme);
   };
 
@@ -49,19 +52,29 @@ export default function Header({
 
   const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setLanguage(e.target.value);
+    localStorage.setItem("language", e.target.value);
+  };
+
+  const handleAnimationStatusChange = () => {
+    const nextAnimationStatus = !isAnimationOn;
+    setIsAnimationOn(nextAnimationStatus);
+    localStorage.setItem("animation", nextAnimationStatus.toString());
   };
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
+      const target = event.target as Node;
       if (
         settingsRef.current &&
-        !settingsRef.current.contains(event.target as Node)
+        !settingsRef.current.contains(target) &&
+        !settingsButtonRef.current?.contains(target)
       ) {
         setIsSettingsDropdownOpen(false);
       }
       if (
         themeRef.current &&
-        !themeRef.current.contains(event.target as Node)
+        !themeRef.current.contains(target) &&
+        !themeButtonRef.current?.contains(target)
       ) {
         setIsThemeDropdownOpen(false);
       }
@@ -98,11 +111,19 @@ export default function Header({
         >
           <MdBarChart />
         </button>
-        <button title={t("header.themes")} onClick={openThemeDropdown}>
+        <button
+          title={t("header.themes")}
+          onClick={openThemeDropdown}
+          ref={themeButtonRef}
+        >
           <IoMoon />
         </button>
         <div className="dropdown-wrapper">
-          <button title={t("header.settings")} onClick={openSettingsDropdown}>
+          <button
+            title={t("header.settings")}
+            onClick={openSettingsDropdown}
+            ref={settingsButtonRef}
+          >
             <IoMdSettings />
           </button>
           {isSettingsDropdownOpen && (
@@ -119,7 +140,7 @@ export default function Header({
                     className="checkbox"
                     type="checkbox"
                     checked={isAnimationOn}
-                    onChange={() => setIsAnimationOn(!isAnimationOn)}
+                    onChange={handleAnimationStatusChange}
                   />
                   <span className="slider"></span>
                 </label>

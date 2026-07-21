@@ -172,13 +172,8 @@ export default function Unlimited() {
     fetchCharacters();
   }, []);
 
-  if (loading) {
-    return <LoadingScreen />;
-  }
-
-  if (error) {
-    return <ErrorScreen message={error} />;
-  }
+  if (loading) return <LoadingScreen />;
+  if (error) return <ErrorScreen message={error} />;
 
   return (
     <>
