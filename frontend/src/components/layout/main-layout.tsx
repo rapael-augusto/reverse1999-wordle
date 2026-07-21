@@ -13,9 +13,17 @@ import "./main-layout.css";
 import { useWindowWidth } from "../../hooks/useWindowWidth";
 
 export default function MainLayout() {
-  const [theme, setTheme] = useState<Theme>("default");
-  const [isAnimationOn, setIsAnimationOn] = useState<boolean>(true);
-  const [language, setLanguage] = useState<string>("en");
+  const [theme, setTheme] = useState<Theme>(() => {
+    const saved = localStorage.getItem("theme") as Theme | null;
+    return saved ?? "default";
+  });
+  const [isAnimationOn, setIsAnimationOn] = useState<boolean>(
+    () => localStorage.getItem("animation") !== "false",
+  );
+  const [language, setLanguage] = useState<string>(() => {
+    const saved = localStorage.getItem("language") as string | null;
+    return saved ?? "en";
+  });
   const width = useWindowWidth();
   const { i18n } = useTranslation();
 
@@ -23,6 +31,11 @@ export default function MainLayout() {
     i18n.changeLanguage(language);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [language]);
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
