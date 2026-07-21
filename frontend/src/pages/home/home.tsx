@@ -14,6 +14,7 @@ import ErrorScreen from "../exceptions/error/error";
 import ProgressBar from "../../components/progress-bar/progress-bar";
 import "./home.css";
 import { useTranslation } from "react-i18next";
+import { getBrazilDateString } from "../../utils/date";
 
 const characterService = new CharacterService();
 
@@ -24,15 +25,15 @@ export default function Home() {
   const [error, setError] = useState("");
   const [isWinModalOpen, setIsWinModalOpen] = useState(false);
   const { t } = useTranslation();
-
-  const getToday = () => new Date().toISOString().split("T")[0];
+  const MAX_TRIES = 5;
+  const todayString = getBrazilDateString();
 
   const [characterGuesses, setCharacterGuesses] = useState<CharacterGuess[]>(
     () => {
       const saved = localStorage.getItem("daily-game");
       if (!saved) return [];
       const data = JSON.parse(saved);
-      return data.date === getToday() ? data.guesses : [];
+      return data.date === todayString ? data.guesses : [];
     },
   );
 
@@ -40,10 +41,8 @@ export default function Home() {
     const saved = localStorage.getItem("daily-game");
     if (!saved) return false;
     const data = JSON.parse(saved);
-    return data.date === getToday() ? data.finished : false;
+    return data.date === todayString ? data.finished : false;
   });
-
-  const MAX_TRIES = 5;
 
   function isCorrectGuess(result: GuessResult) {
     return (
@@ -104,15 +103,13 @@ export default function Home() {
   const finishGame = async (won: boolean, guessesCount: number) => {
     setIsFinished(won);
     await fetchDailyResult();
-
     if (won) {
       handleCelebrate();
     }
 
     setTimeout(() => setIsWinModalOpen(true), 2000);
-
     const alreadyUpdated =
-      localStorage.getItem("statistics-date") === getToday();
+      localStorage.getItem("statistics-date") === todayString;
     if (alreadyUpdated) return;
 
     const stats = JSON.parse(
@@ -139,7 +136,7 @@ export default function Home() {
     }
 
     localStorage.setItem("statistics", JSON.stringify(stats));
-    localStorage.setItem("statistics-date", getToday());
+    localStorage.setItem("statistics-date", todayString);
   };
 
   useEffect(() => {
@@ -161,11 +158,12 @@ export default function Home() {
     localStorage.setItem(
       "daily-game",
       JSON.stringify({
-        date: getToday(),
+        date: todayString,
         guesses: characterGuesses,
         finished: isFinished,
       }),
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [characterGuesses, isFinished]);
 
   useEffect(() => {
