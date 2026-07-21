@@ -155,3 +155,15 @@ def get_daily_result():
         "name": daily_char["name"],
         "slug": daily_char["slug"]
     }
+
+@app.get("/debug")
+def debug():
+    today = datetime.now(ZoneInfo("America/Sao_Paulo")).date()
+
+    return {
+        "today": str(today),
+        "ordinal": today.toordinal(),
+        "count": len(characters),
+        "index": today.toordinal() % len(characters),
+        "daily": get_daily_char()["slug"],
+    }
