@@ -2,8 +2,17 @@ import api from "./apiService";
 
 export class CharacterService {
   async getAllCharactersNames() {
-    const response = await api.get("/characters");
-    return response.data;
+    const MAX_RETRIES = 3;
+    for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
+      try {
+        const response = await api.get("/characters");
+        return response.data;
+      } catch (error) {
+        if (attempt === MAX_RETRIES) {
+          throw error;
+        }
+      }
+    }
   }
 
   async getRandomId() {
