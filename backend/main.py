@@ -167,3 +167,7 @@ def debug():
         "index": today.toordinal() % len(characters),
         "daily": get_daily_char()["slug"],
     }
+
+@app.get("/debug/index/{i}")
+def debug_index(i: int):
+    return characters[i]
