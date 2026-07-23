@@ -17,6 +17,18 @@ A Wordle-inspired guessing game based on Reverse: 1999 characters, featuring det
 
 The concept: using a deterministic shuffle with a fixed seed to ensure reproducible ordering, every day there's a different character chosen from a database in PostgreSQL. You can take guesses and get hints about specific characteristics such as afflatus, version, etc — whether it's right, wrong, higher, or lower. Each guess is supposed to get you closer to today's character. Good luck!
 
+## Live Demo
+
+The project is fully deployed and available at:
+
+**[https://r1999dle.vercel.app/]**
+
+| Service    | Platform |
+| ---------- | -------- |
+| Frontend   | Vercel   |
+| Backend    | Render   |
+| Database   | Neon     |
+
 ## Architecture
 
 The project follows a client-server architecture.
@@ -46,7 +58,7 @@ User → React Frontend → FastAPI Backend → PostgreSQL / In-memory Data → 
 
 ## Current Project State
 
-The project is currently in a near-complete stage, pending Docker setup and final bug fixes.
+The project is complete and deployed.
 
 ### Backend
 
@@ -73,6 +85,7 @@ The project is currently in a near-complete stage, pending Docker setup and fina
 
 - PostgreSQL database integrated with backend;
 - Character dataset successfully loaded into memory on startup;
+- `database/` folder contains `schema.sql`, `seed.sql`, and `generate-seed.py` — add new characters to `data.json` and run the script to regenerate the seed;
 
 ---
 
@@ -92,6 +105,13 @@ The project is currently in a near-complete stage, pending Docker setup and fina
 - i18next (internationalization);
 - CSS3;
 
+### Infrastructure
+
+- Docker & Docker Compose;
+- Vercel (frontend);
+- Render (backend);
+- Neon (database);
+
 ### Dev Tools
 
 - Vite;
@@ -105,18 +125,19 @@ The project is currently in a near-complete stage, pending Docker setup and fina
 - Clean Code principles;
 
 ## Endpoint Map:
- 
+
 The API url base is `http://127.0.0.1:8000/`. All endpoints are listed below.
- 
+
 ### Characters — `/characters`
- 
-| Method | Endpoint             | Description                  | Authentication |
-| ------ | -------------------- | ---------------------------- | -------------- |
-| `GET`  | `/characters`        | Returns all characters       | No             |
-| `GET`  | `/characters/{slug}` | Returns a specific character | No             |
- 
+
+| Method | Endpoint                  | Description                   | Authentication |
+| ------ | ------------------------- | ----------------------------- | -------------- |
+| `GET`  | `/characters`             | Returns all characters        | No             |
+| `GET`  | `/characters/{slug}`      | Returns a specific character  | No             |
+| `GET`  | `/characters/random-id`   | Returns a random character id | No             |
+
 **Response of `/characters`:**
- 
+
 ```json
 [
   {
@@ -130,9 +151,9 @@ The API url base is `http://127.0.0.1:8000/`. All endpoints are listed below.
   // more characters...
 ]
 ```
- 
+
 **Response of `/characters/{slug}` with an example:**
- 
+
 ```json
 {
   "name": "Liang Yue",
@@ -143,74 +164,48 @@ The API url base is `http://127.0.0.1:8000/`. All endpoints are listed below.
   "version": 2.5
 }
 ```
- 
-**Note:** The definition of "slug" in this case is the lowercase name of the character without any accent or punctuation, and any space is changed for a "-". Example: Ms. New Babel -> ms-new-babel.
- 
-### Daily Guess — `/guess`
- 
-| Method | Endpoint | Description                                           | Authentication |
-| ------ | -------- | ----------------------------------------------------- | -------------- |
-| `POST` | `/guess` | Each field returns a tuple: [value, comparisonResult] | No             |
- 
-**Body of `/guess`:**
- 
-```json
-{
-  "slug": "liang-yue"
-}
-```
- 
-**Response of `/guess`:**
- 
-```json
-{
-  "name": ["Liang Yue", false],
-  "rarity": [6, true],
-  "afflatus": ["Star", false],
-  "dmg_type": ["Reality", false],
-  "race": ["Mixed", false],
-  "version": [2.5, "Lower"]
-}
-```
- 
-### Unlimited Guess — `/guess/{id}`
- 
-| Method | Endpoint       | Description                                              | Authentication |
-| ------ | -------------- | -------------------------------------------------------- | -------------- |
-| `POST` | `/guess/{id}`  | Guess against a specific character by id (unlimited mode) | No             |
- 
-**Body of `/guess/{id}`:**
- 
-```json
-{
-  "slug": "liang-yue"
-}
-```
- 
-**Response of `/guess/{id}`:** same structure as `/guess`.
- 
-### Random Character — `/characters/random-id`
- 
-| Method | Endpoint                  | Description                        | Authentication |
-| ------ | ------------------------- | ---------------------------------- | -------------- |
-| `GET`  | `/characters/random-id`   | Returns a random character id      | No             |
- 
+
 **Response of `/characters/random-id`:**
- 
+
 ```json
 {
   "id": 42
 }
 ```
- 
-### Daily Result — `/guess/daily-result`
- 
-| Method | Endpoint               | Description                                        | Authentication |
-| ------ | ---------------------- | -------------------------------------------------- | -------------- |
-| `GET`  | `/guess/daily-result`  | Returns today's character name and slug            | No             |
- 
+
+**Note:** The definition of "slug" in this case is the lowercase name of the character without any accent or punctuation, and any space is changed for a "-". Example: Ms. New Babel -> ms-new-babel.
+
+### Guess — `/guess`
+
+| Method | Endpoint      | Description                                               | Authentication |
+| ------ | ------------- | --------------------------------------------------------- | -------------- |
+| `POST` | `/guess`      | Guess against today's daily character                     | No             |
+| `POST` | `/guess/{id}` | Guess against a specific character by id (unlimited mode) | No             |
+| `GET`  | `/guess/daily-result` | Returns today's character name and slug           | No             |
+
+**Body of `/guess` and `/guess/{id}`:**
+
+```json
+{
+  "slug": "liang-yue"
+}
+```
+
+**Response of `/guess` and `/guess/{id}`:**
+
+```json
+{
+  "name": { "value": "Liang Yue", "correct": false },
+  "rarity": { "value": 6, "comparison": "Lower" },
+  "afflatus": { "value": "Star", "correct": false },
+  "dmg_type": { "value": "Reality", "correct": false },
+  "race": { "value": "Mixed", "correct": false },
+  "version": { "value": 2.5, "comparison": "Lower" }
+}
+```
+
 **Response of `/guess/daily-result`:**
- 
+
 ```json
 {
   "name": "Baby Blue",
@@ -220,55 +215,78 @@ The API url base is `http://127.0.0.1:8000/`. All endpoints are listed below.
 
 ## How to Run
 
-### Prerequisites
+### With Docker (recommended)
+
+#### Prerequisites
+
+- Docker & Docker Compose installed
+- A `.env` file in the project root with the following variables:
+
+```env
+DB_NAME=r1999_wordle
+DB_USER=your_user
+DB_PASSWORD=your_password
+```
+
+#### Run
+
+```bash
+docker compose up --build
+```
+
+| Service  | URL                    |
+| -------- | ---------------------- |
+| Frontend | http://localhost:5173  |
+| Backend  | http://localhost:8000  |
+| Database | localhost:5433         |
+
+### Without Docker
+
+#### Prerequisites
 
 - Python 3.10+
 - Node.js 18+
 - PostgreSQL running locally
 
-### 1. Clone the repository
+#### 1. Clone the repository
 
 ```bash
 git clone https://github.com/your-username/reverse-1999-wordle.git
 cd reverse-1999-wordle
 ```
 
-### 2. Backend
-
-1. Install dependencies:
+#### 2. Database
 
 ```bash
-cd backend
-python -m venv .venv
+cd database
+python generate-seed.py  # generates seed.sql from data.json
 ```
 
-2. Activate virtual environment:
-
-```bash
-.venv\Scripts\activate
-```
-
-3. Setup database:
+Then in your PostgreSQL instance:
 
 ```sql
 CREATE DATABASE r1999_wordle;
 ```
 
-4. Configure your connection in `backend/database.py`
+Run `schema.sql` then `seed.sql` to set up and populate the database.
 
-5. Seed database:
+#### 3. Backend
 
 ```bash
-python seed.py
+cd backend
+python -m venv .venv
+.venv\Scripts\activate
 ```
 
-6. Run backend (available at http://127.0.0.1:8000):
+Configure your connection in `backend/database.py`, then:
 
 ```bash
 uvicorn main:app --reload
 ```
 
-### 3. Frontend
+Available at http://127.0.0.1:8000
+
+#### 4. Frontend
 
 ```bash
 cd frontend
