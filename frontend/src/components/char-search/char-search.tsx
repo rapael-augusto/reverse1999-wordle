@@ -27,8 +27,15 @@ export default function CharacterSearch({
   const itemRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   const filteredCharacters = useMemo(() => {
-    if (debouncedSearch.length < 2) return [];
-    const search = debouncedSearch.toLowerCase();
+    const search = debouncedSearch.toLowerCase().trim();
+
+    if (search.length === 0) return [];
+    if (
+      search.length === 1 &&
+      !characters.some((c) => c.name.toLowerCase() === search)
+    ) {
+      return [];
+    }
 
     return characters
       .filter(
@@ -39,7 +46,6 @@ export default function CharacterSearch({
       .sort((a, b) => {
         const aStarts = a.name.toLowerCase().startsWith(search);
         const bStarts = b.name.toLowerCase().startsWith(search);
-
         if (aStarts === bStarts) return a.name.localeCompare(b.name);
         return aStarts ? -1 : 1;
       });
