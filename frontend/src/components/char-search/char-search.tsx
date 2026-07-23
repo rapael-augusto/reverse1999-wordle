@@ -20,18 +20,30 @@ export default function CharacterSearch({
 }: CharacterSearchProps) {
   const { t } = useTranslation();
   const [characterSearch, setCharacterSearch] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
   const [isFocused, setIsFocused] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   const filteredCharacters = useMemo(() => {
-    return characters.filter(
-      (c) =>
-        c.name.toLowerCase().includes(characterSearch.toLowerCase()) &&
-        !guessedCharacters.some((g) => g.slug === c.slug),
-    );
-  }, [characters, guessedCharacters, characterSearch]);
+    if (debouncedSearch.length < 2) return [];
+    const search = debouncedSearch.toLowerCase();
+
+    return characters
+      .filter(
+        (c) =>
+          c.name.toLowerCase().includes(search) &&
+          !guessedCharacters.some((g) => g.slug === c.slug),
+      )
+      .sort((a, b) => {
+        const aStarts = a.name.toLowerCase().startsWith(search);
+        const bStarts = b.name.toLowerCase().startsWith(search);
+
+        if (aStarts === bStarts) return a.name.localeCompare(b.name);
+        return aStarts ? -1 : 1;
+      });
+  }, [characters, guessedCharacters, debouncedSearch]);
 
   const handleGuessAppend = async (slug: string) => {
     await onGuess(slug);
@@ -85,6 +97,13 @@ export default function CharacterSearch({
     });
   }, [selectedIndex]);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSearch(characterSearch);
+    }, 250);
+    return () => clearTimeout(timer);
+  }, [characterSearch]);
+
   return (
     <div className="search-wrapper" ref={wrapperRef}>
       <IoSearchOutline />
@@ -102,13 +121,13 @@ export default function CharacterSearch({
         onKeyDown={handleKeyDown}
       />
 
-      {isFocused && characterSearch.length > 0 && (
+      {isFocused && debouncedSearch.length >= 2 && (
         <div className="search-dropdown">
           {filteredCharacters.length > 0 ? (
-            filteredCharacters.map((c, index) => (
+            filteredCharacters.slice(0, 8).map((c, index) => (
               <button
                 className={`search-select ${index === selectedIndex ? "selected" : ""}`}
-                key={index}
+                key={c.slug}
                 onClick={() => handleGuessAppend(c.slug)}
                 onMouseEnter={() => setSelectedIndex(index)}
                 ref={(el) => {
