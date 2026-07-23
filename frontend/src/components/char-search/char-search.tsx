@@ -26,17 +26,13 @@ export default function CharacterSearch({
   const wrapperRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
+  const search = debouncedSearch.toLowerCase().trim();
+  const isValidSearch =
+    search.length >= 2 ||
+    (search.length === 1 &&
+      characters.some((c) => c.name.toLowerCase() === search));
   const filteredCharacters = useMemo(() => {
-    const search = debouncedSearch.toLowerCase().trim();
-
-    if (search.length === 0) return [];
-    if (
-      search.length === 1 &&
-      !characters.some((c) => c.name.toLowerCase() === search)
-    ) {
-      return [];
-    }
-
+    if (!isValidSearch) return [];
     return characters
       .filter(
         (c) =>
@@ -46,10 +42,11 @@ export default function CharacterSearch({
       .sort((a, b) => {
         const aStarts = a.name.toLowerCase().startsWith(search);
         const bStarts = b.name.toLowerCase().startsWith(search);
+
         if (aStarts === bStarts) return a.name.localeCompare(b.name);
         return aStarts ? -1 : 1;
       });
-  }, [characters, guessedCharacters, debouncedSearch]);
+  }, [characters, guessedCharacters, search, isValidSearch]);
 
   const handleGuessAppend = async (slug: string) => {
     await onGuess(slug);
@@ -127,7 +124,7 @@ export default function CharacterSearch({
         onKeyDown={handleKeyDown}
       />
 
-      {isFocused && debouncedSearch.length >= 2 && (
+      {isFocused && isValidSearch && (
         <div className="search-dropdown">
           {filteredCharacters.length > 0 ? (
             filteredCharacters.slice(0, 8).map((c, index) => (
