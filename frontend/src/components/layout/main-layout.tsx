@@ -13,6 +13,7 @@ import "./main-layout.css";
 import { useWindowWidth } from "../../hooks/useWindowWidth";
 
 export default function MainLayout() {
+  const { i18n } = useTranslation();
   const [theme, setTheme] = useState<Theme>(() => {
     const saved = localStorage.getItem("theme") as Theme | null;
     return saved ?? "default";
@@ -20,12 +21,10 @@ export default function MainLayout() {
   const [isAnimationOn, setIsAnimationOn] = useState<boolean>(
     () => localStorage.getItem("animation") !== "false",
   );
-  const [language, setLanguage] = useState<string>(() => {
-    const saved = localStorage.getItem("language") as string | null;
-    return saved ?? "en";
+  const [language, setLanguage] = useState(() => {
+    return localStorage.getItem("language") ?? i18n.language;
   });
   const width = useWindowWidth();
-  const { i18n } = useTranslation();
 
   useEffect(() => {
     i18n.changeLanguage(language);
